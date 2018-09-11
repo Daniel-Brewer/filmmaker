@@ -21,9 +21,16 @@ export default Object.create(null, {
 
     },
     
-    getUnfinishedTasks: {
+    getNeededCastMembers: {
         value: (resource) => {
-            return fetch(`${remoteURL}/${resource}?isChecked=false&_sort=date&_order=asc`)
+            return fetch(`${remoteURL}/${resource}`)
+            .then(result => result.json())
+        }
+
+    },
+    getNeededCrewMembers: {
+        value: (resource) => {
+            return fetch(`${remoteURL}/${resource}`)
             .then(result => result.json())
         }
 
