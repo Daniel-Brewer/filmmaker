@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
-import "./cast.css"
-class CastMemberList extends Component {
+import "./scene.css"
+class SceneList extends Component {
     state = {
-        castMemberName: "",
-        characterName: "",
+        sceneName: "",
         details: "",
         isNeeded: false
     }
@@ -15,46 +14,46 @@ class CastMemberList extends Component {
         const complete = { isNeeded: true }
 
         return (<React.Fragment>
-            <form className="castMemberListForm">
-                <div className="castMemberButton">
+            <form className="sceneListForm">
+                <div className="sceneButton">
                     <button type="button"
                         className="btn btn-success"
                         onClick={() => 
-                            this.props.history.push("/castMembers/new")
+                            this.props.history.push("/scenes/new")
                         
                         }>
-                        Click to add your Cast Member
+                        Click to add your Scene
                 </button>
                 </div>
                 <div className="checkbox">
-                    <section className="castMembers">
+                    <section className="scenes">
                         {
-                            this.props.castMembers.map(castMember =>
-                                <div key={castMember.id} className="card">
+                            this.props.scenes.map(scene =>
+                                <div key={scene.id} className="card">
                                     <div className="card-body">
                                         <h4 className="card-title">
-                                            {castMember.castMemberName}
+                                            {scene.sceneName}
                                         </h4>
                                         <br></br>
                                         <h4 className="card-title">
-                                            {castMember.characterName}
+                                            {scene.characterName}
                                         </h4>
                                         <br></br>
                                         <h6>
                                             <br></br>
-                                            {castMember.detail}
+                                            {scene.detail}
                                             <br></br>
 
-                                            <Link className="nav-link" to={`/castMembers/${castMember.id}`}>Details</Link>
+                                            <Link className="nav-link" to={`/scenes/${scene.id}`}>Details</Link>
                                             <button
-                                                onClick={() => this.props.deleteCastMember(castMember.id)}
-                                                className="card-link btn btn-primary btn-sm">Delete Cast Member</button>
+                                                onClick={() => this.props.deleteScene(scene.id)}
+                                                className="card-link btn btn-primary btn-sm">Delete Scene</button>
 
                                         </h6>
                                     </div>
                                     <label>
                                         <button
-                                            onClick={() => this.props.editCastMember(castMember.id, complete)
+                                            onClick={() => this.props.editScene(scene.id, complete)
                                             }
                                             className="card-link btn btn-secondary btn-lg btn-block">Needed
                                          </button>  
@@ -72,4 +71,4 @@ class CastMemberList extends Component {
     }
 }
 
-export default CastMemberList;
+export default SceneList;
