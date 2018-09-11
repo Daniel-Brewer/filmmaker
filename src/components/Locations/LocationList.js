@@ -4,7 +4,6 @@ import "./location.css"
 class LocationList extends Component {
     state = {
         locationName: "",
-        date: "",
         details: "",
         isNeeded: false
     }
@@ -35,8 +34,6 @@ class LocationList extends Component {
                                         <h4 className="card-title">
                                             {location.locationName}
                                         </h4>
-                                        <br></br>
-                                        <h5>{location.date}</h5>
                                         <br></br>
                                         <h6>
                                             <br></br>

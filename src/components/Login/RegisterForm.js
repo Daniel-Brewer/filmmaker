@@ -17,18 +17,6 @@ export default class Register extends Component {
 
     handleRegister = (e) => {
         e.preventDefault()
-
-        // const users = {
-        //     email: this.state.email,
-        //     password: this.state.password,
-        // }
-
-        // this.props.addUser(users)
-        //     .then(() => this.props.history.push("/login"))
-
-        // const user = users.find(user => {
-        //     return user.name === $("#usernameTitle").val() && user.email === $("#email").val()
-        // })
     }
 
     handleButtonClick = () => {

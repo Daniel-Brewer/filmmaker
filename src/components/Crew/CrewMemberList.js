@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
-import "./crewMember.css"
+import "./crew.css"
 class CrewMemberList extends Component {
     state = {
         crewMemberName: "",
@@ -36,7 +36,9 @@ class CrewMemberList extends Component {
                                             {crewMember.crewMemberName}
                                         </h4>
                                         <br></br>
-                                        <h5>{crewMember.date}</h5>
+                                        <h5 className="card-title">
+                                            {crewMember.job}
+                                        </h5>
                                         <br></br>
                                         <h6>
                                             <br></br>

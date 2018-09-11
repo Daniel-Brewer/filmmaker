@@ -44,25 +44,6 @@ export default class Login extends Component {
 
     }
 
-    // handleButtonClick = () => {
-    //     document.location.href = 'http://localhost:3000/news'
-
-    //     this.props.DataManager.getAll("users").then((user) => {
-
-    //         const users = user.find(user => {
-    //             return user.email === this.props.email && user.password === this.props.password //verifies account is in DB
-    //         })
-
-    //         if (users) {
-    //             sessionStorage.setItem("credentials", JSON.stringify(user))
-    //             document.location.href = 'http://localhost:3000/news'
-    //         } else {
-    //             alert("You need to register")
-    //         }
-    //     })
-
-    // }
-
     render() {
         return (
             <div className="forms">

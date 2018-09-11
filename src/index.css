@@ -2,4 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-image: url(http://www.mtcomputers.com/989x657FourSome.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

@@ -2,11 +2,10 @@ import React, { Component } from "react"
 import "../login/Login.css"
 
 
-export default class CastMemberForm extends Component {
+export default class SceneForm extends Component {
     // Set initial state
     state = {
-        castMemberName: "",
-        characterName: "",
+        sceneName: "",
         details: "",
         isChecked: false
     }
@@ -19,44 +18,35 @@ export default class CastMemberForm extends Component {
         this.setState(stateToChange)
     }
 
-    constructNewCastMember = evt => {
+    constructNewScene = evt => {
         evt.preventDefault()
-        if (this.state.characterName === "" || this.state.castMemberName === "" || this.state.details === "") {
+        if (this.state.sceneName === "" || this.state.details === "") {
             window.alert("Please input all fields!")
         } else {
-            const castMember = {
-                castMemberName: this.state.castMemberName,
-                characterName: this.state.characterName,
+            const scene = {
+                sceneName: this.state.sceneName,
                 details: this.state.details,
                 isChecked: false
             }
 
             // Create the animal and redirect user to animal list
-            this.props.addCastMember(castMember).then(() => this.props.history.push("/castMembers"))
+            this.props.addScene(scene).then(() => this.props.history.push("/scenes"))
         }
     }
     handleButtonClick = () => {
-        document.location.href = 'http://localhost:3000/castMembers'
+        document.location.href = 'http://localhost:3000/scenes'
     }
 render() {
     return (
         <React.Fragment>
-            <form className="castMemberForm border border-dark">
+            <form className="sceneForm border border-dark">
                 <div className="form-group">
-                    <label htmlFor="castMemberName">Cast Member Name</label>
+                    <label htmlFor="sceneName">Scene Name</label>
                     <input type="text" required="true"
                         onChange={this.handleFieldChange}
-                        id="castMemberName"
-                        placeholder="CastMember name" />
+                        id="sceneName"
+                        placeholder="Scene name" />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="characterName">Character Name</label>
-                    <input type="text" required="true"
-                        onChange={this.handleFieldChange}
-                        id="characterName"
-                        placeholder="Character name" />
-                </div>
-               
                 <div className="form-group">
                     <label htmlFor="details">Details</label>
                     <input type="text" required="true"
@@ -64,7 +54,7 @@ render() {
                         id="details"
                         placeholder="Add details" />
                 </div>
-                <button type="submit" onClick={this.constructNewCastMember}
+                <button type="submit" onClick={this.constructNewScene}
                     className="btn btn-primary">Submit</button>
 
 

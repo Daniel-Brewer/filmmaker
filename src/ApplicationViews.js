@@ -1,38 +1,33 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './App';
-// import registerServiceWorker from './registerServiceWorker';
-
-// ReactDOM.render(<App />, document.getElementById('root'));
-// registerServiceWorker();
-
 import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from 'react';
 import DataManager from './modules/DataManager'
 import HomePage from './components/homepage/HomePage'
 import Login from './components/login/LoginForm'
 import Register from './components/login/RegisterForm'
-// import FriendList from './components/FriendList'
-// import FriendForm from './Forms/FriendForm'
-import CastMemberList from './components/CastMembers/CastMemberList'
-import CastMemberForm from './components/CastMembers/CastMemberForm'
-import CastMemberDetail from './components/CastMembers/CastMemberDetails'
-import CastMemberEditForm from './components/CastMembers/CastMemberEditForm'
-import NoteList from './components/notes/NoteList'
-import NoteForm from './components/notes/NoteForm'
+import CastMemberDetail from './components/cast/CastMemberDetails'
+import CastMemberEditForm from './components/cast/CastMemberEditForm'
+import CastMemberForm from './components/cast/CastMemberForm'
+import CastMemberList from './components/cast/CastMemberList'
+import CrewMemberDetail from './components/crew/CrewMemberDetails'
+import CrewMemberEditForm from './components/crew/CrewMemberEditForm'
+import CrewMemberForm from './components/crew/CrewMemberForm'
+import CrewMemberList from './components/crew/CrewMemberList'
+import NoteDetail from './components/notes/NoteDetails'
 import NoteEditForm from './components/notes/NoteEditForm'
-import NewsList from './components/news/NewsList'
-import NewsForm from './components/news/NewsForm'
-import NewsDetail from './components/news/NewsDetail'
-import JokeList from './components/jokes/JokeList'
-import JokeForm from './components/jokes/JokeForm'
-import JokeDetail from './components/jokes/JokeDetail'
-import JokeEditForm from './components/jokes/JokeEditForm'
-import CrewMemberList from './components/crewMembers/CrewMemberList'
-import CrewMemberForm from './components/crewMembers/CrewMemberForm'
-import CrewMemberDetail from './components/crewMembers/CrewMemberDetails'
-import CrewMemberEditForm from './components/crewMembers/CrewMemberEditForm'
+import NoteForm from './components/notes/NoteForm'
+import NoteList from './components/notes/NoteList'
+import SceneDetail from './components/scenes/SceneDetails'
+import SceneEditForm from './components/scenes/SceneEditForm'
+import SceneForm from './components/scenes/SceneForm'
+import SceneList from './components/scenes/SceneList'
+import ScenePropDetail from './components/sceneProps/ScenePropDetails'
+import ScenePropEditForm from './components/sceneProps/ScenePropEditForm'
+import ScenePropForm from './components/sceneProps/ScenePropForm'
+import ScenePropList from './components/sceneProps/ScenePropList'
+import LocationDetail from './components/locations/LocationDetails'
+import LocationEditForm from './components/locations/LocationEditForm'
+import LocationForm from './components/locations/LocationForm'
+import LocationList from './components/locations/LocationList'
 
 export default class ApplicationViews extends Component {
 
@@ -41,12 +36,12 @@ export default class ApplicationViews extends Component {
 
   state = {
     users: [],
-    news: [],
-    notes: [],
     castMembers: [],
-    jokes: [],
     crewMembers: [],
-    friends: [],
+    notes: [],
+    scenes: [],
+    sceneProps: [],
+    locations: [],
     isLoaded: false
   }
 
@@ -73,23 +68,42 @@ export default class ApplicationViews extends Component {
       user: user
     }))
 
-  addNews = news => DataManager.add("news", news)
-    .then(() => DataManager.getAll("news"))
-    .then(news => this.setState({
-      news: news
+  addCastMember = CastMember => DataManager.add("castMembers", CastMember)
+    .then(() => DataManager.getNeededCastMembers("castMembers"))
+    .then(castMembers => this.setState({
+      castMembers: castMembers
     }))
 
-  deleteNews = id => DataManager.delete("news", id)
-    .then(() => DataManager.getAll("news"))
-    .then(news => this.setState({
-      news: news
+  deleteCastMember = id => DataManager.delete("castMembers", id)
+    .then(() => DataManager.getNeededCastMembers("castMembers"))
+    .then(castMembers => this.setState({
+      castMembers: castMembers
     }))
 
-  editNews = (id, news) => DataManager.edit("news", id, news)
-    .then(() => DataManager.getAll("news"))
-    .then(news => this.setState({
-      news: news
+  editCastMember = (id, castMembers) => DataManager.edit("castMembers", id, castMembers)
+    .then(() => DataManager.getNeededCastMembers("castMembers"))
+    .then(castMembers => this.setState({
+      castMembers: castMembers
     }))
+
+  addCrewMember = crewMember => DataManager.add("crewMembers", crewMember)
+    .then(() => DataManager.getAllAscend("crewMembers"))
+    .then(crewMembers => this.setState({
+      crewMembers: crewMembers
+    }))
+
+  deleteCrewMember = id => DataManager.delete("crewMembers", id)
+    .then(() => DataManager.getAllAscend("crewMembers"))
+    .then(crewMembers => this.setState({
+      crewMembers: crewMembers
+    }))
+
+  editCrewMember = (id, crewMembers) => DataManager.edit("crewMembers", id, crewMembers)
+    .then(() => DataManager.getAllAscend("crewMembers"))
+    .then(crewMembers => this.setState({
+      crewMembers: crewMembers
+    }))
+
 
   addNote = notes => DataManager.add("notes", notes)
     .then(() => DataManager.getAll("notes"))
@@ -103,82 +117,64 @@ export default class ApplicationViews extends Component {
       notes: notes
     }))
 
-  editNote = (id, motes) => DataManager.edit("notes", id, notes)
+  editNote = (id, notes) => DataManager.edit("notes", id, notes)
     .then(() => DataManager.getAll("notes"))
     .then(notes => this.setState({
       notes: notes
     }))
 
-  addCastMember = CastMember => DataManager.add("castMembers", CastMember)
-    .then(() => DataManager.getUnfinishedCastMembers("castMembers"))
-    .then(castMembers => this.setState({
-      castMembers: castMembers
+  addScene = Scene => DataManager.add("scenes", Scene)
+    .then(() => DataManager.getNeededScene("scenes"))
+    .then(scenes => this.setState({
+      scenes: scenes
     }))
 
-  deleteCastMember = id => DataManager.delete("castMembers", id)
-    .then(() => DataManager.getUnfinishedCastMembers("castMembers"))
-    .then(castMembers => this.setState({
-      castMembers: castMembers
+  deleteScene = id => DataManager.delete("scenes", id)
+    .then(() => DataManager.getNeededScenes("scenes"))
+    .then(scenes => this.setState({
+      scenes: scenes
     }))
 
-  editCastMember = (id, castMembers) => DataManager.edit("castMembers", id, castMembers)
-    .then(() => DataManager.getUnfinishedCastMembers("castMembers"))
-    .then(castMembers => this.setState({
-      castMembers: castMembers
+  editScene = (id, scenes) => DataManager.edit("scenes", id, scenes)
+    .then(() => DataManager.getNeededScenes("scenes"))
+    .then(scenes => this.setState({
+      scenes: scenes
     }))
 
-  addJoke = joke => DataManager.add("jokes", joke)
-    .then(() => DataManager.getAll("jokes"))
-    .then(jokes => this.setState({
-      jokes: jokes
+  addSceneProp = SceneProp => DataManager.add("sceneProps", SceneProp)
+    .then(() => DataManager.getNeededSceneProps("sceneProps"))
+    .then(sceneProps => this.setState({
+      sceneProps: sceneProps
     }))
 
-  deleteJoke = id => DataManager.delete("jokes", id)
-    .then(() => DataManager.getAll("jokes"))
-    .then(jokes => this.setState({
-      jokes: jokes
+  deleteSceneProp = id => DataManager.delete("sceneProps", id)
+    .then(() => DataManager.getNeededSceneProps("sceneProps"))
+    .then(sceneProps => this.setState({
+      sceneProps: sceneProps
     }))
 
-  editJoke = (id, jokes) => DataManager.edit("jokes", id, jokes)
-    .then(() => DataManager.getAll("jokes"))
-    .then(jokes => this.setState({
-      jokes: jokes
+  editSceneProp = (id, sceneProps) => DataManager.edit("sceneProps", id, sceneProps)
+    .then(() => DataManager.getNeededSceneProps("sceneProps"))
+    .then(sceneProps => this.setState({
+      sceneProps: sceneProps
     }))
 
-  addCrewMember = crewMember => DataManager.add("crewMembers", crewMember)
-    .then(() => DataManager.getAllAscend("crewMembers"))
-    .then(crewMembers => this.setState({
-      crewMembers: crewMembers
+  addLocation = Location => DataManager.add("locations", Location)
+    .then(() => DataManager.getNeededLocation("locations"))
+    .then(locations => this.setState({
+      locations: locations
     }))
 
-  deleteCrewMember = id => DataManager.delete("crewMembers", id)
-    .then(() => DataManager.getAllAscend("crewMembers"))
-    .then(crewMembers => this.setState({
-      CrewMembers: CrewMembers
+  deleteLocation = id => DataManager.delete("locations", id)
+    .then(() => DataManager.getNeededLocations("locations"))
+    .then(locations => this.setState({
+      locations: locations
     }))
 
-  editCrewMember = (id, crewMembers) => DataManager.edit("crewMembers", id, crewMembers)
-    .then(() => DataManager.getAllAscend("crewMembers"))
-    .then(crewMembers => this.setState({
-      crewMembers: crewMembers
-    }))
-
-  addFriend = friend => DataManager.add("friends", friend)
-    .then(() => DataManager.getAll("friends"))
-    .then(friends => this.setState({
-      friends: friends
-    }))
-
-  deleteFriend = id => DataManager.delete("friends", id)
-    .then(() => DataManager.getAll("friends"))
-    .then(friends => this.setState({
-      friends: friends
-    }))
-
-  editFriend = (id, friends) => DataManager.edit("friends", id, friends)
-    .then(() => DataManager.getAll("friends"))
-    .then(friends => this.setState({
-      friends: friends
+  editLocation = (id, locations) => DataManager.edit("locations", id, locations)
+    .then(() => DataManager.getNeededLocations("locations"))
+    .then(locations => this.setState({
+      locations: locations
     }))
 
   componentDidMount() {
@@ -190,34 +186,34 @@ export default class ApplicationViews extends Component {
         newState.users = allUsers
       })
       .then(() => {
-        DataManager.getAll("news")
-          .then(allNews => {
-            newState.news = allNews
+        DataManager.getNeededCastMembers("castMembers")
+          .then(allCastMembers => {
+            newState.castMembers = allCastMembers
           })
           .then(() => {
-            DataManager.getAll("notes")
-              .then(allNotes => {
-                newState.notes = allNotes
+            DataManager.getNeededCrewMembers("crewMembers")
+              .then(allCrewMembers => {
+                newState.crewMembers = allCrewMembers
               })
               .then(() => {
-                DataManager.getUnfinishedCastMembers("castMembers")
-                  .then(allCastMembers => {
-                    newState.castMembers = allCastMembers
+                DataManager.getAll("notes")
+                  .then(allNotes => {
+                    newState.notes = allNotes
                   })
                   .then(() => {
-                    DataManager.getAll("jokes")
-                      .then(allJokes => {
-                        newState.jokes = allJokes
+                    DataManager.getAll("scenes")
+                      .then(allScenes => {
+                        newState.scenes = allScenes
                       })
                       .then(() => {
-                        DataManager.getUnfinishedCastMembers("crewMembers")
-                          .then(allcrewMembers => {
-                            newState.crewMembers = allCrewMembers
+                        DataManager.getAll("sceneProps")
+                          .then(allSceneProps => {
+                            newState.sceneprops = allSceneProps
                           })
                           .then(() => {
-                            DataManager.getAll("friends")
-                              .then(allFriends => {
-                                newState.friends = allFriends
+                            DataManager.getAll("locations")
+                              .then(allLocations => {
+                                newState.locations = allLocations
                               })
                               .then(() => {
                                 this.setState(newState)
@@ -239,60 +235,6 @@ export default class ApplicationViews extends Component {
           return <Register {...props}
             addUser={this.addUser}
             users={this.state.users} />
-        }} />
-        <Route exact path="/news" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <NewsList {...props}
-              deleteNews={this.deleteNews}
-              news={this.state.news} />
-          } else {
-            return <Redirect to="/" />
-          }
-        }} />
-        <Route exact path="/news/new" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <NewsForm {...props}
-              addNews={this.addNews} />
-          } else {
-            return <Redirect to="/" />
-          }
-        }} />
-        <Route exact path="/news/:newsId(\d+)" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <NewsDetail {...props}
-              deleteNews={this.deleteNews}
-              news={this.state.news} />
-          } else {
-            return <Redirect to="/" />
-          }
-        }} />
-
-        <Route exact path="/notes" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <NoteList {...props}
-              users={this.state.users}
-              editNote={this.editNote}
-              deleteNote={this.deleteNote}
-              notes={this.state.notes} />
-          } else {
-            return <Redirect to="/" />
-          }
-        }} />
-        <Route exact path="/notes/new" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <NoteForm {...props}
-              notes={this.state.notes}
-              addNote={this.addNote} />
-          } else {
-            return <Redirect to="/" />
-          }
-        }} />
-        <Route exact path="/notes/edit/:noteId(\d+)" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <NoteEditForm  {...props} editNote={this.editNote} notes={this.state.notes} />
-          } else {
-            return <Redirect to="/login" />
-          }
         }} />
         <Route exact path="/CastMembers" render={(props) => {
           if (this.isAuthenticated()) {
@@ -327,48 +269,17 @@ export default class ApplicationViews extends Component {
           }
         }} />
 
-        <Route exact path="/jokes" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <JokeList {...props}
-              deleteJoke={this.deleteJoke}
-              jokes={this.state.jokes} />
-          } else {
-            return <Redirect to="/" />
-          }
-        }} />
-        <Route exact path="/jokes/new" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <JokeForm {...props}
-              addJoke={this.addJoke} />
-          } else {
-            return <Redirect to="/" />
-          }
-        }} />
-        <Route exact path="/jokes/:jokeId(\d+)" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <JokeDetail {...props} deleteJoke={this.deleteJoke} jokes={this.state.jokes} />
-          } else {
-            return <Redirect to="/" />
-          }
-        }} />
-        <Route exact path="/jokes/edit/:jokeId(\d+)" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <JokeEditForm {...props} editJoke={this.editJoke} deleteJoke={this.deleteJoke} jokes={this.state.jokes} />
-          } else {
-            return <Redirect to="/login" />
-          }
-        }} /> 
-        < Route exact path="/CrewMembers" render={(props) => {
+        < Route exact path="/crewMembers" render={(props) => {
           if (this.isAuthenticated()) {
             return <CrewMemberList {...props}
               deleteCrewMember={this.deleteCrewMember}
-              CrewMembers={this.state.CrewMembers} />
+              crewMembers={this.state.crewMembers} />
           } else {
             return <Redirect to="/" />
           }
         }
         } />
-        < Route exact path="/CrewMembers/new" render={(props) => {
+        < Route exact path="/crewMembers/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <CrewMemberForm {...props}
               addCrewMember={this.addCrewMember} />
@@ -376,7 +287,7 @@ export default class ApplicationViews extends Component {
             return <Redirect to="/" />
           }
         }} />
-        < Route exact path="/CrewMembers/:CrewMemberId(\d+)" render={(props) => {
+        < Route exact path="/crewMembers/:CrewMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
             return <CrewMemberDetail {...props} deleteCrewMember={this.deleteCrewMember} CrewMembers={this.state.CrewMembers} />
           } else {
@@ -390,30 +301,143 @@ export default class ApplicationViews extends Component {
             return <Redirect to="/" />
           }
         }} />
-        {/* <Route exact path="/friends" render={(props) => {
+
+        <Route exact path="/notes" render={(props) => {
           if (this.isAuthenticated()) {
-            return <FriendList {...props}
-              deleteFriend={this.deleteFriend}
-              friends={this.state.friends} />
+            return <NoteList {...props}
+              users={this.state.users}
+              editNote={this.editNote}
+              deleteNote={this.deleteNote}
+              notes={this.state.notes} />
           } else {
             return <Redirect to="/" />
           }
         }} />
-        <Route exact path="/friends/new" render={(props) => {
+        <Route exact path="/notes/new" render={(props) => {
           if (this.isAuthenticated()) {
-            return <FriendForm {...props}
-              addFriend={this.addFriend} />
+            return <NoteForm {...props}
+              notes={this.state.notes}
+              addNote={this.addNote} />
           } else {
             return <Redirect to="/" />
           }
-        }} /> */}
-        {/* <Route exact path="/friends/:friendId(\d+)" render={(props) => {
+        }} />
+        <Route exact path="/notes/edit/:noteId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <FriendDetail {...props} deleteFriend={this.deleteFriend} friends={this.state.friends} />
+            return <NoteEditForm  {...props} editNote={this.editNote} notes={this.state.notes} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} />
+        <Route exact path="/Notes/:NoteId(\d+)" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <NoteDetail {...props} deleteNote={this.deleteNote} notes={this.state.notes} />
           } else {
             return <Redirect to="/" />
           }
-        }} /> */}
+        }} />
+
+        <Route exact path="/Scenes" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <SceneList {...props}
+              deleteScene={this.deleteScene}
+              editScene={this.editScene}
+              Scenes={this.state.Scenes} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/scenes/new" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <SceneForm {...props}
+              scenes={this.state.scenes}
+              addScene={this.addScene} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/scenes/edit/:sceneId(\d+)" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <SceneEditForm  {...props} editScene={this.editScene} scenes={this.state.scenes} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} />
+        <Route exact path="/Scenes/:SceneId(\d+)" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <SceneDetail {...props} deleteScene={this.deleteScene} notes={this.state.scenes} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+
+        <Route exact path="/SceneProps" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <ScenePropList {...props}
+              deleteSceneProp={this.deleteSceneProp}
+              editSceneProp={this.editSceneProp}
+              SceneProps={this.state.SceneProps} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/sceneProps/new" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <ScenePropForm {...props}
+              sceneProps={this.state.sceneProps}
+              addSceneProp={this.addSceneProp} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/sceneProps/edit/:scenePropId(\d+)" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <ScenePropEditForm  {...props} editSceneProp={this.editSceneProp} sceneProps={this.state.sceneProps} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} />
+        <Route exact path="/SceneProps/:ScenePropId(\d+)" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <ScenePropDetail {...props} deleteSceneProp={this.deleteSceneProp} notes={this.state.sceneProps} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/Locations" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <LocationList {...props}
+              deleteLocation={this.deleteLocation}
+              editLocation={this.editLocation}
+              Locations={this.state.Locations} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/locations/new" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <LocationForm {...props}
+              locations={this.state.locations}
+              addLocation={this.addLocation} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/locations/edit/:locationId(\d+)" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <LocationEditForm  {...props} editLocation={this.editLocation} locations={this.state.locations} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} />
+        <Route exact path="/Locations/:LocationId(\d+)" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <LocationDetail {...props} deleteLocation={this.deleteLocation} notes={this.state.locations} />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+
       </React.Fragment >
     )
 
