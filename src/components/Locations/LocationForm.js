@@ -46,7 +46,7 @@ render() {
                     <input type="text" required="true"
                         onChange={this.handleFieldChange}
                         id="locationName"
-                        placeholder="location name" />
+                        placeholder="Location name" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="details">Details</label>

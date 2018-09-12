@@ -9,8 +9,6 @@ class ScenePropList extends Component {
     }
 
     render() {
-
-        
         const complete = { isNeeded: true }
 
         return (<React.Fragment>
@@ -18,9 +16,9 @@ class ScenePropList extends Component {
                 <div className="scenePropButton">
                     <button type="button"
                         className="btn btn-success"
-                        onClick={() => 
+                        onClick={() =>
                             this.props.history.push("/sceneProps/new")
-                        
+
                         }>
                         Click to add your Scene Prop
                 </button>
@@ -33,10 +31,6 @@ class ScenePropList extends Component {
                                     <div className="card-body">
                                         <h4 className="card-title">
                                             {sceneProp.scenePropName}
-                                        </h4>
-                                        <br></br>
-                                        <h4 className="card-title">
-                                            {sceneProp.characterName}
                                         </h4>
                                         <br></br>
                                         <h6>
@@ -56,8 +50,8 @@ class ScenePropList extends Component {
                                             onClick={() => this.props.editSceneProp(sceneProp.id, complete)
                                             }
                                             className="card-link btn btn-secondary btn-lg btn-block">Needed
-                                         </button>  
-                                          
+                                         </button>
+
                                         {/* {id} */}
                                     </label>
                                 </div>

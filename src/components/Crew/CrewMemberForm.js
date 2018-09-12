@@ -26,7 +26,7 @@ export default class CrewMemberForm extends Component {
         } else {
             const crewMember = {
                 crewMemberName: this.state.crewMemberName,
-                date: this.state.job,
+                job: this.state.job,
                 details: this.state.details,
                 user: this.props.activeUser.id,
                 isChecked: false
