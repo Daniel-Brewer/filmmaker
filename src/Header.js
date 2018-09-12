@@ -6,6 +6,10 @@ export default class Header extends Component {
 
         return(
             <React.Fragment>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
             <center><h1>Filmmaker's Friend</h1></center>
             <hr />
             </React.Fragment>

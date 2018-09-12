@@ -31,7 +31,7 @@ class NavBar extends Component {
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link"
-                        to="/locations">Locationss</Link>
+                        to="/locations">Locations</Link>
                     </li>
                     {/* <li className="nav-item">
                         <Link className="nav-link"

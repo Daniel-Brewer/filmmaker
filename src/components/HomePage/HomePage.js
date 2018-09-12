@@ -5,7 +5,7 @@ export default class HomePage extends Component {
 
     render() {
         let styles = {
-            backgroundImage: "url(https://pixabay.com/en/photography-art-lights-stand-2560956/) no-repeat center center fixed",
+            backgroundImage: "url(https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.indiawilds.com%2Fimages%2FSabyasachi_about.jpg&f=1) no-repeat center center fixed",
             WebkitBackgroundSize: "cover",
             MozBackgroundSize: "cover",
             OBackgroundSize: "cover",
