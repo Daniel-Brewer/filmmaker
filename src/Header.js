@@ -6,7 +6,7 @@ export default class Header extends Component {
 
         return(
             <React.Fragment>
-            <center><h1>Nutshell</h1></center>
+            <center><h1>Filmmaker's Friend</h1></center>
             <hr />
             </React.Fragment>
         )

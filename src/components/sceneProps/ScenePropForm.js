@@ -26,6 +26,7 @@ export default class ScenePropForm extends Component {
             const sceneProp = {
                 scenePropName: this.state.scenePropName,
                 details: this.state.details,
+                user: this.props.activeUser.id,
                 isChecked: false
             }
 

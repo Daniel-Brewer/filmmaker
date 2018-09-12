@@ -36,6 +36,8 @@ class CastMemberList extends Component {
                                             {castMember.castMemberName}
                                         </h4>
                                         <br></br>
+                                        <h5 className="card-title">plays</h5>
+                                        <br></br>
                                         <h4 className="card-title">
                                             {castMember.characterName}
                                         </h4>

@@ -19,6 +19,8 @@ export default class CastMemberDetail extends Component {
                     <div className="card-body">
                         <h4 className="card-title">{castMember.name}</h4>
                         <br></br>
+                        {/* <h6>plays</h6> */}
+                        <h5 className="card-title"> plays </h5>
                         <h5 className="card-title"> {castMember.characterName} </h5>
                         <br></br>
                         <h6 className="card-title">{castMember.details}</h6>

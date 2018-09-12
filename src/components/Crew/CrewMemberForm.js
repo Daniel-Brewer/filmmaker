@@ -28,6 +28,7 @@ export default class CrewMemberForm extends Component {
                 crewMemberName: this.state.crewMemberName,
                 date: this.state.job,
                 details: this.state.details,
+                user: this.props.activeUser.id,
                 isChecked: false
             }
 

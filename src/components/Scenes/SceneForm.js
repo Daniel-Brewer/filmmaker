@@ -26,6 +26,7 @@ export default class SceneForm extends Component {
             const scene = {
                 sceneName: this.state.sceneName,
                 details: this.state.details,
+                user: this.props.activeUser.id,
                 isChecked: false
             }
 

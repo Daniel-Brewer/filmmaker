@@ -25,7 +25,8 @@ export default class NoteForm extends Component {
             id: this.state.noteId,
             note: this.state.note,
             date: new Date().toISOString(),
-            userId: credentials.id
+            // userId: credentials.id,
+            user: this.props.activeUser.id
         }
 
         this.props.addNote(notes)

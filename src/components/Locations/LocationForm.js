@@ -26,6 +26,7 @@ export default class LocationForm extends Component {
             const location = {
                 locationName: this.state.locationName,
                 details: this.state.details,
+                user: this.props.activeUser.id,
                 isChecked: false
             }
 
