@@ -15,7 +15,7 @@ export default Object.create(null, {
 
     getAllAscend: {
         value: (resource) => {
-            return fetch(`${remoteURL}/${resource}?_sort=date&_order=asc`)
+            return fetch(`${remoteURL}/${resource}`)
             .then(result => result.json())
         }
 

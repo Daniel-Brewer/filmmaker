@@ -42,6 +42,7 @@ export default class ApplicationViews extends Component {
     scenes: [],
     sceneProps: [],
     locations: [],
+    activeUser:[],
     isLoaded: false
   }
 
@@ -68,7 +69,7 @@ export default class ApplicationViews extends Component {
       user: user
     }))
 
-  addCastMember = CastMember => DataManager.add("castMembers", CastMember)
+  addCastMember = castMember => DataManager.add("castMembers", castMember)
     .then(() => DataManager.getNeededCastMembers("castMembers"))
     .then(castMembers => this.setState({
       castMembers: castMembers
@@ -105,7 +106,7 @@ export default class ApplicationViews extends Component {
     }))
 
 
-  addNote = notes => DataManager.add("notes", notes)
+  addNote = note => DataManager.add("notes", note)
     .then(() => DataManager.getAll("notes"))
     .then(notes => this.setState({
       notes: notes
@@ -123,7 +124,7 @@ export default class ApplicationViews extends Component {
       notes: notes
     }))
 
-  addScene = Scene => DataManager.add("scenes", Scene)
+  addScene = scene => DataManager.add("scenes", scene)
     .then(() => DataManager.getNeededScene("scenes"))
     .then(scenes => this.setState({
       scenes: scenes
@@ -141,7 +142,7 @@ export default class ApplicationViews extends Component {
       scenes: scenes
     }))
 
-  addSceneProp = SceneProp => DataManager.add("sceneProps", SceneProp)
+  addSceneProp = sceneProp => DataManager.add("sceneProps", sceneProp)
     .then(() => DataManager.getNeededSceneProps("sceneProps"))
     .then(sceneProps => this.setState({
       sceneProps: sceneProps
@@ -159,7 +160,7 @@ export default class ApplicationViews extends Component {
       sceneProps: sceneProps
     }))
 
-  addLocation = Location => DataManager.add("locations", Location)
+  addLocation = location => DataManager.add("locations", location)
     .then(() => DataManager.getNeededLocation("locations"))
     .then(locations => this.setState({
       locations: locations
@@ -180,7 +181,8 @@ export default class ApplicationViews extends Component {
   componentDidMount() {
 
     const newState = {}
-
+    let localUser = JSON.parse(localStorage.getItem("credentials"));
+    newState.activeUser = localUser;
     DataManager.getAll("users")
       .then(allUsers => {
         newState.users = allUsers
@@ -229,41 +231,54 @@ export default class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
+        {/* put project page in place of homepage and create path to homepage from */}
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" render={(props) => {
           return <Register {...props}
-            addUser={this.addUser}
-            users={this.state.users} />
+          addUser={this.addUser}
+          users={this.state.users} />
         }} />
-        <Route exact path="/CastMembers" render={(props) => {
+        <Route exact path="/castMembers" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberList {...props}
-              deleteCastMember={this.deleteCastMember}
-              editCastMember={this.editCastMember}
-              CastMembers={this.state.CastMembers} />
+            deleteCastMember={this.deleteCastMember}
+            editCastMember={this.editCastMember}
+            castMembers={this.state.castMembers}
+            activeUser={this.state.activeUser}
+            // projects={this.state.projects}
+            />
           } else {
             return <Redirect to="/" />
           }
         }} />
-        <Route exact path="/CastMembers/new" render={(props) => {
+        <Route exact path="/castMembers/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberForm {...props}
-              addCastMember={this.addCastMember} />
+            addCastMember={this.addCastMember}
+            activeUser={this.state.activeUser}
+            />
           } else {
             return <Redirect to="/" />
           }
         }} />
-        <Route exact path="/CastMembers/:CastMemberId(\d+)" render={(props) => {
+        <Route exact path="/castMembers/:castMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <CastMemberDetail {...props} deleteCastMember={this.deleteCastMember} castMembers={this.state.castMembers} />
+            return <CastMemberDetail {...props} deleteCastMember={this.deleteCastMember} 
+            castMembers={this.state.castMembers}
+            activeUser={this.state.activeUser}
+            />
           } else {
             return <Redirect to="/" />
           }
         }} />
-        <Route exact path="/CastMembers/edit/:CastMemberId(\d+)" render={(props) => {
+        <Route exact path="/castMembers/edit/:castMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <CastMemberEditForm  {...props} editCastMember={this.editCastMember} castMembers={this.state.castMembers} />
+            return <CastMemberEditForm  {...props} 
+            editCastMember={this.editCastMember} 
+            castMembers={this.state.castMembers} 
+            activeUser={this.state.activeUser}
+            />
           } else {
             return <Redirect to="/login" />
           }
@@ -272,31 +287,40 @@ export default class ApplicationViews extends Component {
         < Route exact path="/crewMembers" render={(props) => {
           if (this.isAuthenticated()) {
             return <CrewMemberList {...props}
-              deleteCrewMember={this.deleteCrewMember}
-              crewMembers={this.state.crewMembers} />
+            deleteCrewMember={this.deleteCrewMember}
+            crewMembers={this.state.crewMembers}
+            activeUser={this.state.activeUser} />
           } else {
             return <Redirect to="/" />
           }
         }
-        } />
+      } />
         < Route exact path="/crewMembers/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <CrewMemberForm {...props}
-              addCrewMember={this.addCrewMember} />
+            addCrewMember={this.addCrewMember}
+            activeUser={this.state.activeUser}
+            />
           } else {
             return <Redirect to="/" />
           }
         }} />
-        < Route exact path="/crewMembers/:CrewMemberId(\d+)" render={(props) => {
+        < Route exact path="/crewMembers/:crewMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <CrewMemberDetail {...props} deleteCrewMember={this.deleteCrewMember} CrewMembers={this.state.CrewMembers} />
+            return <CrewMemberDetail {...props} deleteCrewMember={this.deleteCrewMember} 
+            crewMembers={this.state.crewMembers}
+            activeUser={this.state.activeUser}
+            />
           } else {
             return <Redirect to="/" />
           }
         }} />
-        < Route exact path="/CrewMembers/edit/:CrewMemberId(\d+)" render={(props) => {
+        < Route exact path="/crewMembers/edit/:crewMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <CrewMemberEditForm  {...props} editCrewMember={this.editCrewMember} CrewMembers={this.state.CrewMembers} />
+            return <CrewMemberEditForm  {...props} editCrewMember={this.editCrewMember} 
+            crewMembers={this.state.crewMembers} 
+            activeUser={this.state.activeUser}
+            />
           } else {
             return <Redirect to="/" />
           }
@@ -305,10 +329,11 @@ export default class ApplicationViews extends Component {
         <Route exact path="/notes" render={(props) => {
           if (this.isAuthenticated()) {
             return <NoteList {...props}
-              users={this.state.users}
-              editNote={this.editNote}
-              deleteNote={this.deleteNote}
-              notes={this.state.notes} />
+            users={this.state.users}
+            editNote={this.editNote}
+            activeUser={this.state.activeUser}
+            deleteNote={this.deleteNote}
+            notes={this.state.notes} />
           } else {
             return <Redirect to="/" />
           }
@@ -316,33 +341,39 @@ export default class ApplicationViews extends Component {
         <Route exact path="/notes/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <NoteForm {...props}
-              notes={this.state.notes}
-              addNote={this.addNote} />
+            notes={this.state.notes}
+            activeUser={this.state.activeUser}
+            addNote={this.addNote} />
           } else {
             return <Redirect to="/" />
           }
         }} />
         <Route exact path="/notes/edit/:noteId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <NoteEditForm  {...props} editNote={this.editNote} notes={this.state.notes} />
+            return <NoteEditForm  {...props} editNote={this.editNote} 
+            activeUser={this.state.activeUser}
+            notes={this.state.notes} />
           } else {
             return <Redirect to="/login" />
           }
         }} />
-        <Route exact path="/Notes/:NoteId(\d+)" render={(props) => {
+        <Route exact path="/notes/:NoteId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <NoteDetail {...props} deleteNote={this.deleteNote} notes={this.state.notes} />
+            return <NoteDetail {...props} deleteNote={this.deleteNote} 
+            activeUser={this.state.activeUser}
+            notes={this.state.notes} />
           } else {
             return <Redirect to="/" />
           }
         }} />
 
-        <Route exact path="/Scenes" render={(props) => {
+        <Route exact path="/scenes" render={(props) => {
           if (this.isAuthenticated()) {
             return <SceneList {...props}
-              deleteScene={this.deleteScene}
-              editScene={this.editScene}
-              Scenes={this.state.Scenes} />
+            deleteScene={this.deleteScene}
+            editScene={this.editScene}
+            activeUser={this.state.activeUser}
+            scenes={this.state.scenes} />
           } else {
             return <Redirect to="/" />
           }
@@ -350,33 +381,39 @@ export default class ApplicationViews extends Component {
         <Route exact path="/scenes/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <SceneForm {...props}
-              scenes={this.state.scenes}
-              addScene={this.addScene} />
+            scenes={this.state.scenes}
+            activeUser={this.state.activeUser}
+            addScene={this.addScene} />
           } else {
             return <Redirect to="/" />
           }
         }} />
         <Route exact path="/scenes/edit/:sceneId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <SceneEditForm  {...props} editScene={this.editScene} scenes={this.state.scenes} />
+            return <SceneEditForm  {...props} editScene={this.editScene} 
+            activeUser={this.state.activeUser}
+            scenes={this.state.scenes} />
           } else {
             return <Redirect to="/login" />
           }
         }} />
-        <Route exact path="/Scenes/:SceneId(\d+)" render={(props) => {
+        <Route exact path="/scenes/:sceneId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <SceneDetail {...props} deleteScene={this.deleteScene} notes={this.state.scenes} />
+            return <SceneDetail {...props} deleteScene={this.deleteScene} 
+            activeUser={this.state.activeUser}
+            scenes={this.state.scenes} />
           } else {
             return <Redirect to="/" />
           }
         }} />
 
-        <Route exact path="/SceneProps" render={(props) => {
+        <Route exact path="/sceneProps" render={(props) => {
           if (this.isAuthenticated()) {
             return <ScenePropList {...props}
-              deleteSceneProp={this.deleteSceneProp}
-              editSceneProp={this.editSceneProp}
-              SceneProps={this.state.SceneProps} />
+            deleteSceneProp={this.deleteSceneProp}
+            editSceneProp={this.editSceneProp}
+            activeUser={this.state.activeUser}
+            sceneProps={this.state.sceneProps} />
           } else {
             return <Redirect to="/" />
           }
@@ -384,32 +421,38 @@ export default class ApplicationViews extends Component {
         <Route exact path="/sceneProps/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <ScenePropForm {...props}
-              sceneProps={this.state.sceneProps}
-              addSceneProp={this.addSceneProp} />
+            sceneProps={this.state.sceneProps}
+            activeUser={this.state.activeUser}
+            addSceneProp={this.addSceneProp} />
           } else {
             return <Redirect to="/" />
           }
         }} />
         <Route exact path="/sceneProps/edit/:scenePropId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <ScenePropEditForm  {...props} editSceneProp={this.editSceneProp} sceneProps={this.state.sceneProps} />
+            return <ScenePropEditForm  {...props} editSceneProp={this.editSceneProp} 
+            activeUser={this.state.activeUser}
+            sceneProps={this.state.sceneProps} />
           } else {
             return <Redirect to="/login" />
           }
         }} />
-        <Route exact path="/SceneProps/:ScenePropId(\d+)" render={(props) => {
+        <Route exact path="/sceneProps/:ScenePropId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <ScenePropDetail {...props} deleteSceneProp={this.deleteSceneProp} notes={this.state.sceneProps} />
+            return <ScenePropDetail {...props} deleteSceneProp={this.deleteSceneProp} 
+            activeUser={this.state.activeUser}
+            sceneProps={this.state.sceneProps} />
           } else {
             return <Redirect to="/" />
           }
         }} />
-        <Route exact path="/Locations" render={(props) => {
+        <Route exact path="/locations" render={(props) => {
           if (this.isAuthenticated()) {
             return <LocationList {...props}
-              deleteLocation={this.deleteLocation}
-              editLocation={this.editLocation}
-              Locations={this.state.Locations} />
+            deleteLocation={this.deleteLocation}
+            editLocation={this.editLocation}
+            activeUser={this.state.activeUser}
+            locations={this.state.locations} />
           } else {
             return <Redirect to="/" />
           }
@@ -417,22 +460,27 @@ export default class ApplicationViews extends Component {
         <Route exact path="/locations/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <LocationForm {...props}
-              locations={this.state.locations}
-              addLocation={this.addLocation} />
+            locations={this.state.locations}
+            activeUser={this.state.activeUser}
+            addLocation={this.addLocation} />
           } else {
             return <Redirect to="/" />
           }
         }} />
         <Route exact path="/locations/edit/:locationId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <LocationEditForm  {...props} editLocation={this.editLocation} locations={this.state.locations} />
+            return <LocationEditForm  {...props} editLocation={this.editLocation} 
+            activeUser={this.state.activeUser}
+            locations={this.state.locations} />
           } else {
             return <Redirect to="/login" />
           }
         }} />
         <Route exact path="/Locations/:LocationId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <LocationDetail {...props} deleteLocation={this.deleteLocation} notes={this.state.locations} />
+            return <LocationDetail {...props} deleteLocation={this.deleteLocation} 
+            activeUser={this.state.activeUser}
+            locations={this.state.locations} />
           } else {
             return <Redirect to="/" />
           }

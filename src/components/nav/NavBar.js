@@ -12,22 +12,26 @@ class NavBar extends Component {
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
                 <ul className="nav nav-pills">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/news">News</Link>
+                        <Link className="nav-link" to="/castMembers">Cast</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link"
-                        to="/messages">Messages</Link>
+                        to="/crewMembers">Crew</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/tasks">Tasks</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link"
-                        to="/jokes">Jokes</Link>
+                        <Link className="nav-link" to="/notes">Director's Notes</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link"
-                        to="/events">Events</Link>
+                        to="/scenes">Scenes</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link"
+                        to="/sceneProps">Props</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link"
+                        to="/locations">Locationss</Link>
                     </li>
                     {/* <li className="nav-item">
                         <Link className="nav-link"
