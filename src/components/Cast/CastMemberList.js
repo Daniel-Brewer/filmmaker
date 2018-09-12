@@ -10,8 +10,6 @@ class CastMemberList extends Component {
     }
 
     render() {
-
-        
         const complete = { isNeeded: true }
 
         return (<React.Fragment>
@@ -19,9 +17,9 @@ class CastMemberList extends Component {
                 <div className="castMemberButton">
                     <button type="button"
                         className="btn btn-success"
-                        onClick={() => 
+                        onClick={() =>
                             this.props.history.push("/castMembers/new")
-                        
+
                         }>
                         Click to add your Cast Member
                 </button>
@@ -59,8 +57,8 @@ class CastMemberList extends Component {
                                             onClick={() => this.props.editCastMember(castMember.id, complete)
                                             }
                                             className="card-link btn btn-secondary btn-lg btn-block">Needed
-                                         </button>  
-                                          
+                                         </button>
+
                                         {/* {id} */}
                                     </label>
                                 </div>

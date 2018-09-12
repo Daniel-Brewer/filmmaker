@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 // the edit button will live on Crew Member Detail
 
-export default class CastMemberEditForm extends Component {
+export default class CrewMemberEditForm extends Component {
 
     state = {
 
@@ -46,7 +46,7 @@ render() {
                     <input type="text" required="true"
                         onChange={this.handleFieldChange}
                         id="crewtMemberName"
-                        placeholder={this.state.crewtMemberName} />
+                        placeholder={this.state.crewMemberName} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="job">Job</label>
