@@ -88,38 +88,38 @@ export default class ApplicationViews extends Component {
     }))
 
   addCrewMember = crewMember => DataManager.add("crewMembers", crewMember)
-    .then(() => DataManager.getAllAscend("crewMembers"))
+    .then(() => DataManager.getNeededCrewMembers("crewMembers"))
     .then(crewMembers => this.setState({
       crewMembers: crewMembers
     }))
 
   deleteCrewMember = id => DataManager.delete("crewMembers", id)
-    .then(() => DataManager.getAllAscend("crewMembers"))
+    .then(() => DataManager.getNeededCrewMembers("crewMembers"))
     .then(crewMembers => this.setState({
       crewMembers: crewMembers
     }))
 
   editCrewMember = (id, crewMembers) => DataManager.edit("crewMembers", id, crewMembers)
-    .then(() => DataManager.getAllAscend("crewMembers"))
+    .then(() => DataManager.getNeededCrewMembers("crewMembers"))
     .then(crewMembers => this.setState({
       crewMembers: crewMembers
     }))
 
 
   addNote = note => DataManager.add("notes", note)
-    .then(() => DataManager.getAll("notes"))
+    .then(() => DataManager.getNeededNotes("notes"))
     .then(notes => this.setState({
       notes: notes
     }))
 
   deleteNote = id => DataManager.delete("notes", id)
-    .then(() => DataManager.getAll("notes"))
+    .then(() => DataManager.getNeededNotes("notes"))
     .then(notes => this.setState({
       notes: notes
     }))
 
   editNote = (id, notes) => DataManager.edit("notes", id, notes)
-    .then(() => DataManager.getAll("notes"))
+    .then(() => DataManager.getNeededNotes("notes"))
     .then(notes => this.setState({
       notes: notes
     }))
@@ -161,7 +161,7 @@ export default class ApplicationViews extends Component {
     }))
 
   addLocation = location => DataManager.add("locations", location)
-    .then(() => DataManager.getNeededLocation("locations"))
+    .then(() => DataManager.getNeededLocations("locations"))
     .then(locations => this.setState({
       locations: locations
     }))
@@ -198,22 +198,22 @@ export default class ApplicationViews extends Component {
                 newState.crewMembers = allCrewMembers
               })
               .then(() => {
-                DataManager.getAll("notes")
+                DataManager.getNeededNotes("notes")
                   .then(allNotes => {
                     newState.notes = allNotes
                   })
                   .then(() => {
-                    DataManager.getAll("scenes")
+                    DataManager.getNeededScenes("scenes")
                       .then(allScenes => {
                         newState.scenes = allScenes
                       })
                       .then(() => {
-                        DataManager.getAll("sceneProps")
+                        DataManager.getNeededSceneProps("sceneProps")
                           .then(allSceneProps => {
                             newState.sceneprops = allSceneProps
                           })
                           .then(() => {
-                            DataManager.getAll("locations")
+                            DataManager.getNeededLocations("locations")
                               .then(allLocations => {
                                 newState.locations = allLocations
                               })

@@ -35,6 +35,48 @@ export default Object.create(null, {
         }
 
     },
+    getNeededCrewMembers: {
+        value: (resource) => {
+            return fetch(`${remoteURL}/${resource}`)
+            .then(result => result.json())
+        }
+
+    },
+    getNeededCrewMembers: {
+        value: (resource) => {
+            return fetch(`${remoteURL}/${resource}`)
+            .then(result => result.json())
+        }
+
+    },
+    getNeededNotes: {
+        value: (resource) => {
+            return fetch(`${remoteURL}/${resource}`)
+            .then(result => result.json())
+        }
+
+    },
+    getNeededScenes: {
+        value: (resource) => {
+            return fetch(`${remoteURL}/${resource}`)
+            .then(result => result.json())
+        }
+
+    },
+    getNeededSceneProps: {
+        value: (resource) => {
+            return fetch(`${remoteURL}/${resource}`)
+            .then(result => result.json())
+        }
+
+    },
+    getNeededLocations: {
+        value: (resource) => {
+            return fetch(`${remoteURL}/${resource}`)
+            .then(result => result.json())
+        }
+
+    },
 
     getAll: {
         value: (resource) => {
