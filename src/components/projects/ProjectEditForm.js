@@ -27,7 +27,7 @@ constructNewProject = (evt) => {
         projectId: this.props.projects.find(e => e.name === this.state.project).id,
         // characterName: this.state.characterName,
         details: this.state.details,
-        // project: this.props.project.id,
+        project: this.state.id,
         id: this.state.id
     }
     this.props.editProject(newProject.id, newProject)

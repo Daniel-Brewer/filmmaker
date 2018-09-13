@@ -12,6 +12,9 @@ class NavBar extends Component {
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
                 <ul className="nav nav-pills">
                     <li className="nav-item">
+                        <Link className="nav-link" to="/projects">Projects</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link" to="/castMembers">Cast</Link>
                     </li>
                     <li className="nav-item">
@@ -38,11 +41,11 @@ class NavBar extends Component {
                         to="/friends">Friends</Link>
                     </li> */}
                 </ul>
-                {/* <button onClick={() => {
+                <button onClick={() => {
                     localStorage.clear("credentials")
                     document.location.href='http://localhost:3000'
                 }}
-                className="logoutButton">Logout</button> */}
+                className="logoutButton">Logout</button>
                 </nav>
             )
         }

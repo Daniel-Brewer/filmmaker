@@ -4,7 +4,6 @@ import Header from "./Header"
 import ApplicationViews from "./ApplicationViews"
 import "bootstrap/dist/css/bootstrap.min.css"
 
-
 class Filmmaker extends Component {
     render() {
         return (
