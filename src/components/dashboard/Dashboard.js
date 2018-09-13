@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './dashboard.css'
 
-export default class HomePage extends Component {
+export default class Dashboard extends Component {
 
     render() {
         let styles = {
@@ -14,7 +14,7 @@ export default class HomePage extends Component {
         return (
             <React.Fragment>
                 <div className="homeButtons" style={styles}>
-                    <div className="loginButton">
+                    {/* <div className="loginButton">
                         <button type="button"
                             className="btn btn-success"
                             onClick={() => {
@@ -32,7 +32,7 @@ export default class HomePage extends Component {
                                 this.props.history.push("/register")
                             }
                             }>Create Account</button>
-                    </div>
+                    </div> */}
                 </div>
                     
             </React.Fragment>
