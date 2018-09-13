@@ -41,7 +41,7 @@ constructNewNote = (evt) => {
 render() {
     return (
         <React.Fragment>
-            <h2>Mote</h2>
+            <h2>Note</h2>
             <form className="noteForm">
                 <div className="form-group">
                     <section className="noteField">

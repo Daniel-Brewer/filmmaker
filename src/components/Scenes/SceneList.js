@@ -35,10 +35,10 @@ class SceneList extends Component {
                                             {scene.sceneName}
                                         </h4>
                                         <br></br>
-                                        <h4 className="card-title">
+                                        {/* <h4 className="card-title">
                                             {scene.characterName}
                                         </h4>
-                                        <br></br>
+                                        <br></br> */}
                                         <h6>
                                             <br></br>
                                             {scene.detail}

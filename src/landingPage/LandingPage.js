@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './homePage.css'
+import './LandingPage.css'
 
-export default class HomePage extends Component {
+export default class LandingPage extends Component {
 
     render() {
         let styles = {

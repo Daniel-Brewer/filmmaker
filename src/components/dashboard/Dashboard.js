@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './homePage.css'
+import './dashboard.css'
 
 export default class HomePage extends Component {
 
@@ -22,6 +22,9 @@ export default class HomePage extends Component {
                             }
                             }>Login</button>
                     </div>
+                    <br></br>
+                    <br></br>
+                    <br></br>
                     <div className="registerButton">
                         <button type="button"
                             className="btn btn-success"

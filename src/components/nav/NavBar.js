@@ -38,14 +38,14 @@ class NavBar extends Component {
                         to="/friends">Friends</Link>
                     </li> */}
                 </ul>
-                <button onClick={() => {
+                {/* <button onClick={() => {
                     localStorage.clear("credentials")
                     document.location.href='http://localhost:3000'
                 }}
-                    className="logoutButton">Logout</button>
-            </nav>
-        )
+                className="logoutButton">Logout</button> */}
+                </nav>
+            )
+        }
     }
-}
-
+    
 export default NavBar
