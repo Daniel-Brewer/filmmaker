@@ -35,21 +35,14 @@ export default Object.create(null, {
         }
 
     },
-    getNeededCrewMembers: {
-        value: (resource) => {
-            return fetch(`${remoteURL}/${resource}`)
-            .then(result => result.json())
-        }
-
-    },
-    getNeededCrewMembers: {
-        value: (resource) => {
-            return fetch(`${remoteURL}/${resource}`)
-            .then(result => result.json())
-        }
-
-    },
     getNeededNotes: {
+        value: (resource) => {
+            return fetch(`${remoteURL}/${resource}`)
+            .then(result => result.json())
+        }
+
+    },
+    getNeededProjects: {
         value: (resource) => {
             return fetch(`${remoteURL}/${resource}`)
             .then(result => result.json())

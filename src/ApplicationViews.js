@@ -1,7 +1,7 @@
 import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from 'react';
 import DataManager from './modules/DataManager'
-import HomePage from './components/homepage/HomePage'
+import Dashboard from './components/dashboard/Dashboard'
 import Login from './components/login/LoginForm'
 import Register from './components/login/RegisterForm'
 import CastMemberDetail from './components/cast/CastMemberDetails'
@@ -42,7 +42,8 @@ export default class ApplicationViews extends Component {
     scenes: [],
     sceneProps: [],
     locations: [],
-    activeUser:[],
+    activeUser: [],
+    projects: [],
     isLoaded: false
   }
 
@@ -210,7 +211,7 @@ export default class ApplicationViews extends Component {
                       .then(() => {
                         DataManager.getNeededSceneProps("sceneProps")
                           .then(allSceneProps => {
-                            newState.sceneprops = allSceneProps
+                            newState.sceneProps = allSceneProps
                           })
                           .then(() => {
                             DataManager.getNeededLocations("locations")
@@ -218,7 +219,13 @@ export default class ApplicationViews extends Component {
                                 newState.locations = allLocations
                               })
                               .then(() => {
-                                this.setState(newState)
+                                DataManager.getNeededProjects("projects")
+                                  .then(allProjects => {
+                                    newState.projects = allProjects
+                                  })
+                                  .then(() => {
+                                    this.setState(newState)
+                                  })
                               })
                           })
                       })
@@ -232,20 +239,20 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
         {/* put project page in place of homepage and create path to homepage from */}
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={Dashboard} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" render={(props) => {
           return <Register {...props}
-          addUser={this.addUser}
-          users={this.state.users} />
+            addUser={this.addUser}
+            users={this.state.users} />
         }} />
         <Route exact path="/castMembers" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberList {...props}
-            deleteCastMember={this.deleteCastMember}
-            editCastMember={this.editCastMember}
-            castMembers={this.state.castMembers}
-            activeUser={this.state.activeUser}
+              deleteCastMember={this.deleteCastMember}
+              editCastMember={this.editCastMember}
+              castMembers={this.state.castMembers}
+              activeUser={this.state.activeUser}
             // projects={this.state.projects}
             />
           } else {
@@ -255,8 +262,8 @@ export default class ApplicationViews extends Component {
         <Route exact path="/castMembers/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberForm {...props}
-            addCastMember={this.addCastMember}
-            activeUser={this.state.activeUser}
+              addCastMember={this.addCastMember}
+              activeUser={this.state.activeUser}
             />
           } else {
             return <Redirect to="/" />
@@ -264,9 +271,9 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/castMembers/:castMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <CastMemberDetail {...props} deleteCastMember={this.deleteCastMember} 
-            castMembers={this.state.castMembers}
-            activeUser={this.state.activeUser}
+            return <CastMemberDetail {...props} deleteCastMember={this.deleteCastMember}
+              castMembers={this.state.castMembers}
+              activeUser={this.state.activeUser}
             />
           } else {
             return <Redirect to="/" />
@@ -274,10 +281,10 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/castMembers/edit/:castMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <CastMemberEditForm  {...props} 
-            editCastMember={this.editCastMember} 
-            castMembers={this.state.castMembers} 
-            activeUser={this.state.activeUser}
+            return <CastMemberEditForm  {...props}
+              editCastMember={this.editCastMember}
+              castMembers={this.state.castMembers}
+              activeUser={this.state.activeUser}
             />
           } else {
             return <Redirect to="/login" />
@@ -287,19 +294,19 @@ export default class ApplicationViews extends Component {
         < Route exact path="/crewMembers" render={(props) => {
           if (this.isAuthenticated()) {
             return <CrewMemberList {...props}
-            deleteCrewMember={this.deleteCrewMember}
-            crewMembers={this.state.crewMembers}
-            activeUser={this.state.activeUser} />
+              deleteCrewMember={this.deleteCrewMember}
+              crewMembers={this.state.crewMembers}
+              activeUser={this.state.activeUser} />
           } else {
             return <Redirect to="/" />
           }
         }
-      } />
+        } />
         < Route exact path="/crewMembers/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <CrewMemberForm {...props}
-            addCrewMember={this.addCrewMember}
-            activeUser={this.state.activeUser}
+              addCrewMember={this.addCrewMember}
+              activeUser={this.state.activeUser}
             />
           } else {
             return <Redirect to="/" />
@@ -307,10 +314,10 @@ export default class ApplicationViews extends Component {
         }} />
         < Route exact path="/crewMembers/:crewMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <CrewMemberDetail {...props} 
-            deleteCrewMember={this.deleteCrewMember} 
-            crewMembers={this.state.crewMembers}
-            activeUser={this.state.activeUser}
+            return <CrewMemberDetail {...props}
+              deleteCrewMember={this.deleteCrewMember}
+              crewMembers={this.state.crewMembers}
+              activeUser={this.state.activeUser}
             />
           } else {
             return <Redirect to="/" />
@@ -318,10 +325,10 @@ export default class ApplicationViews extends Component {
         }} />
         < Route exact path="/crewMembers/edit/:crewMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <CrewMemberEditForm  {...props} 
-            editCrewMember={this.editCrewMember} 
-            crewMembers={this.state.crewMembers} 
-            activeUser={this.state.activeUser}
+            return <CrewMemberEditForm  {...props}
+              editCrewMember={this.editCrewMember}
+              crewMembers={this.state.crewMembers}
+              activeUser={this.state.activeUser}
             />
           } else {
             return <Redirect to="/login" />
@@ -331,11 +338,11 @@ export default class ApplicationViews extends Component {
         <Route exact path="/notes" render={(props) => {
           if (this.isAuthenticated()) {
             return <NoteList {...props}
-            users={this.state.users}
-            editNote={this.editNote}
-            activeUser={this.state.activeUser}
-            deleteNote={this.deleteNote}
-            notes={this.state.notes} />
+              users={this.state.users}
+              editNote={this.editNote}
+              activeUser={this.state.activeUser}
+              deleteNote={this.deleteNote}
+              notes={this.state.notes} />
           } else {
             return <Redirect to="/" />
           }
@@ -343,29 +350,29 @@ export default class ApplicationViews extends Component {
         <Route exact path="/notes/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <NoteForm {...props}
-            notes={this.state.notes}
-            activeUser={this.state.activeUser}
-            addNote={this.addNote} />
+              notes={this.state.notes}
+              activeUser={this.state.activeUser}
+              addNote={this.addNote} />
           } else {
             return <Redirect to="/" />
           }
         }} />
         <Route exact path="/notes/edit/:noteId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <NoteEditForm  {...props} 
-            editNote={this.editNote} 
-            activeUser={this.state.activeUser}
-            notes={this.state.notes} />
+            return <NoteEditForm  {...props}
+              editNote={this.editNote}
+              activeUser={this.state.activeUser}
+              notes={this.state.notes} />
           } else {
             return <Redirect to="/login" />
           }
         }} />
         <Route exact path="/notes/:NoteId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <NoteDetail {...props} 
-            deleteNote={this.deleteNote} 
-            activeUser={this.state.activeUser}
-            notes={this.state.notes} />
+            return <NoteDetail {...props}
+              deleteNote={this.deleteNote}
+              activeUser={this.state.activeUser}
+              notes={this.state.notes} />
           } else {
             return <Redirect to="/" />
           }
@@ -374,10 +381,10 @@ export default class ApplicationViews extends Component {
         <Route exact path="/scenes" render={(props) => {
           if (this.isAuthenticated()) {
             return <SceneList {...props}
-            deleteScene={this.deleteScene}
-            editScene={this.editScene}
-            activeUser={this.state.activeUser}
-            scenes={this.state.scenes} />
+              deleteScene={this.deleteScene}
+              editScene={this.editScene}
+              activeUser={this.state.activeUser}
+              scenes={this.state.scenes} />
           } else {
             return <Redirect to="/" />
           }
@@ -385,29 +392,29 @@ export default class ApplicationViews extends Component {
         <Route exact path="/scenes/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <SceneForm {...props}
-            scenes={this.state.scenes}
-            activeUser={this.state.activeUser}
-            addScene={this.addScene} />
+              scenes={this.state.scenes}
+              activeUser={this.state.activeUser}
+              addScene={this.addScene} />
           } else {
             return <Redirect to="/" />
           }
         }} />
         <Route exact path="/scenes/edit/:sceneId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <SceneEditForm  {...props} 
-            editScene={this.editScene} 
-            activeUser={this.state.activeUser}
-            scenes={this.state.scenes} />
+            return <SceneEditForm  {...props}
+              editScene={this.editScene}
+              activeUser={this.state.activeUser}
+              scenes={this.state.scenes} />
           } else {
             return <Redirect to="/login" />
           }
         }} />
         <Route exact path="/scenes/:sceneId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <SceneDetail {...props} 
-            deleteScene={this.deleteScene} 
-            activeUser={this.state.activeUser}
-            scenes={this.state.scenes} />
+            return <SceneDetail {...props}
+              deleteScene={this.deleteScene}
+              activeUser={this.state.activeUser}
+              scenes={this.state.scenes} />
           } else {
             return <Redirect to="/" />
           }
@@ -416,10 +423,10 @@ export default class ApplicationViews extends Component {
         <Route exact path="/sceneProps" render={(props) => {
           if (this.isAuthenticated()) {
             return <ScenePropList {...props}
-            deleteSceneProp={this.deleteSceneProp}
-            editSceneProp={this.editSceneProp}
-            activeUser={this.state.activeUser}
-            sceneProps={this.state.sceneProps} />
+              deleteSceneProp={this.deleteSceneProp}
+              editSceneProp={this.editSceneProp}
+              activeUser={this.state.activeUser}
+              sceneProps={this.state.sceneProps} />
           } else {
             return <Redirect to="/" />
           }
@@ -427,29 +434,29 @@ export default class ApplicationViews extends Component {
         <Route exact path="/sceneProps/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <ScenePropForm {...props}
-            sceneProps={this.state.sceneProps}
-            activeUser={this.state.activeUser}
-            addSceneProp={this.addSceneProp} />
+              sceneProps={this.state.sceneProps}
+              activeUser={this.state.activeUser}
+              addSceneProp={this.addSceneProp} />
           } else {
             return <Redirect to="/" />
           }
         }} />
         <Route exact path="/sceneProps/edit/:scenePropId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <ScenePropEditForm  {...props} 
-            editSceneProp={this.editSceneProp} 
-            activeUser={this.state.activeUser}
-            sceneProps={this.state.sceneProps} />
+            return <ScenePropEditForm  {...props}
+              editSceneProp={this.editSceneProp}
+              activeUser={this.state.activeUser}
+              sceneProps={this.state.sceneProps} />
           } else {
             return <Redirect to="/login" />
           }
         }} />
         <Route exact path="/sceneProps/:scenePropId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <ScenePropDetail {...props} 
-            deleteSceneProp={this.deleteSceneProp} 
-            activeUser={this.state.activeUser}
-            sceneProps={this.state.sceneProps} />
+            return <ScenePropDetail {...props}
+              deleteSceneProp={this.deleteSceneProp}
+              activeUser={this.state.activeUser}
+              sceneProps={this.state.sceneProps} />
           } else {
             return <Redirect to="/" />
           }
@@ -457,10 +464,10 @@ export default class ApplicationViews extends Component {
         <Route exact path="/locations" render={(props) => {
           if (this.isAuthenticated()) {
             return <LocationList {...props}
-            deleteLocation={this.deleteLocation}
-            editLocation={this.editLocation}
-            activeUser={this.state.activeUser}
-            locations={this.state.locations} />
+              deleteLocation={this.deleteLocation}
+              editLocation={this.editLocation}
+              activeUser={this.state.activeUser}
+              locations={this.state.locations} />
           } else {
             return <Redirect to="/" />
           }
@@ -468,29 +475,29 @@ export default class ApplicationViews extends Component {
         <Route exact path="/locations/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <LocationForm {...props}
-            locations={this.state.locations}
-            activeUser={this.state.activeUser}
-            addLocation={this.addLocation} />
+              locations={this.state.locations}
+              activeUser={this.state.activeUser}
+              addLocation={this.addLocation} />
           } else {
             return <Redirect to="/" />
           }
         }} />
         <Route exact path="/locations/edit/:locationId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <LocationEditForm  {...props} 
-            editLocation={this.editLocation} 
-            activeUser={this.state.activeUser}
-            locations={this.state.locations} />
+            return <LocationEditForm  {...props}
+              editLocation={this.editLocation}
+              activeUser={this.state.activeUser}
+              locations={this.state.locations} />
           } else {
             return <Redirect to="/login" />
           }
         }} />
         <Route exact path="/Locations/:LocationId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
-            return <LocationDetail {...props} 
-            deleteLocation={this.deleteLocation} 
-            activeUser={this.state.activeUser}
-            locations={this.state.locations} />
+            return <LocationDetail {...props}
+              deleteLocation={this.deleteLocation}
+              activeUser={this.state.activeUser}
+              locations={this.state.locations} />
           } else {
             return <Redirect to="/" />
           }
