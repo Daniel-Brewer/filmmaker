@@ -2,6 +2,7 @@ import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from 'react';
 import DataManager from './modules/DataManager'
 import Dashboard from './components/dashboard/Dashboard'
+import LandingPage from './components/landingPage/LandingPage'
 import Login from './components/login/LoginForm'
 import Register from './components/login/RegisterForm'
 import CastMemberDetail from './components/cast/CastMemberDetails'
@@ -28,6 +29,10 @@ import LocationDetail from './components/locations/LocationDetails'
 import LocationEditForm from './components/locations/LocationEditForm'
 import LocationForm from './components/locations/LocationForm'
 import LocationList from './components/locations/LocationList'
+import ProjectDetail from './components/projects/ProjectDetails'
+import ProjectEditForm from './components/projects/ProjectEditForm'
+import ProjectForm from './components/projects/ProjectForm'
+import ProjectList from './components/projects/ProjectList'
 
 export default class ApplicationViews extends Component {
 
@@ -106,7 +111,6 @@ export default class ApplicationViews extends Component {
       crewMembers: crewMembers
     }))
 
-
   addNote = note => DataManager.add("notes", note)
     .then(() => DataManager.getNeededNotes("notes"))
     .then(notes => this.setState({
@@ -123,6 +127,24 @@ export default class ApplicationViews extends Component {
     .then(() => DataManager.getNeededNotes("notes"))
     .then(notes => this.setState({
       notes: notes
+    }))
+
+  addProject = project => DataManager.add("projects", project)
+    .then(() => DataManager.getNeededProjects("projects"))
+    .then(projects => this.setState({
+      projects: projects
+    }))
+
+  deleteProject = id => DataManager.delete("projects", id)
+    .then(() => DataManager.getNeededProjects("projects"))
+    .then(projects => this.setState({
+      projects: projects
+    }))
+
+  editProject = (id, projects) => DataManager.edit("projects", id, projects)
+    .then(() => DataManager.getNeededProjects("projects"))
+    .then(projects => this.setState({
+      projects: projects
     }))
 
   addScene = scene => DataManager.add("scenes", scene)
@@ -239,7 +261,8 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
         {/* put project page in place of homepage and create path to homepage from */}
-        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/" component={LandingPage} />
+        {/* <Route exact path="/" component={Dashboard} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" render={(props) => {
           return <Register {...props}
@@ -375,6 +398,50 @@ export default class ApplicationViews extends Component {
               notes={this.state.notes} />
           } else {
             return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/projects" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <ProjectList {...props}
+              deleteProject={this.deleteProject}
+              editProject={this.editProject}
+              projects={this.state.projects}
+              activeUser={this.state.activeUser}
+            // projects={this.state.projects}
+            />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/projects/new" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <ProjectForm {...props}
+              addProject={this.addProject}
+              activeUser={this.state.activeUser}
+            />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/projects/:projectId(\d+)" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <ProjectDetail {...props} deleteProject={this.deleteProject}
+              projects={this.state.projects}
+              activeUser={this.state.activeUser}
+            />
+          } else {
+            return <Redirect to="/" />
+          }
+        }} />
+        <Route exact path="/projects/edit/:projectId(\d+)" render={(props) => {
+          if (this.isAuthenticated()) {
+            return <ProjectEditForm  {...props}
+              editProject={this.editProject}
+              projects={this.state.projects}
+              activeUser={this.state.activeUser}
+            />
+          } else {
+            return <Redirect to="/login" />
           }
         }} />
 
