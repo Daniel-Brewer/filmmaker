@@ -262,7 +262,7 @@ export default class ApplicationViews extends Component {
       <React.Fragment>
         {/* put project page in place of homepage and create path to homepage from */}
         <Route exact path="/" component={LandingPage} />
-        {/* <Route exact path="/" component={Dashboard} /> */}
+        <Route exact path="/" component={Dashboard} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" render={(props) => {
           return <Register {...props}

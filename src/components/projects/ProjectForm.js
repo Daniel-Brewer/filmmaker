@@ -26,10 +26,9 @@ export default class ProjectForm extends Component {
         } else {
             const project = {
                 projectName: this.state.projectName,
-                // characterName: this.state.characterName,
                 details: this.state.details,
                 user: this.props.activeUser.id,
-                // project: this.props.project.id,
+                project: this.state.id,
                 isChecked: false
             }
 

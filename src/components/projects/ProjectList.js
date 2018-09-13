@@ -43,7 +43,7 @@ class ProjectList extends Component {
                                             {project.detail}
                                             <br></br>
 
-                                            <Link className="nav-link" to={`/projects/${project.id}`}>Details</Link>
+                                            <Link className="nav-link" to={`/dashboard/${project.id}`}>Project Dashboard</Link>
                                             <button
                                                 onClick={() => this.props.deleteProject(project.id)}
                                                 className="card-link btn btn-primary btn-sm">Delete Project</button>

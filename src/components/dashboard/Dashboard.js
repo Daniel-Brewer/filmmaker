@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './dashboard.css'
-
 export default class Dashboard extends Component {
 
     render() {
@@ -13,8 +12,18 @@ export default class Dashboard extends Component {
         }
         return (
             <React.Fragment>
-                <div className="homeButtons" style={styles}>
-                    {/* <div className="loginButton">
+                {/* <div>
+                    <NavBar />
+                </div> */}
+                {/* <div className="homeButtons" style={styles}>
+                <div className="logoutButton">
+                <button onClick={() => {
+                    localStorage.clear("credentials")
+                    document.location.href='http://localhost:3000'
+                }}
+                    className="logoutButton">Logout</button>
+                    </div> */}
+                {/* <div className="loginButton">
                         <button type="button"
                             className="btn btn-success"
                             onClick={() => {
@@ -33,8 +42,9 @@ export default class Dashboard extends Component {
                             }
                             }>Create Account</button>
                     </div> */}
-                </div>
-                    
+
+
+
             </React.Fragment>
         )
 
