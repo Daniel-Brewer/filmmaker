@@ -1,53 +1,56 @@
 import React, { Component } from 'react'
 import './dashboard.css'
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 export default class Dashboard extends Component {
 
     render() {
-        let styles = {
-            backgroundImage: "url(https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.indiawilds.com%2Fimages%2FSabyasachi_about.jpg&f=1) no-repeat center center fixed",
-            WebkitBackgroundSize: "cover",
-            MozBackgroundSize: "cover",
-            OBackgroundSize: "cover",
-            backgroundSize: "cover"
-        }
+        // let styles = {
+        //     backgroundImage: "url(https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.indiawilds.com%2Fimages%2FSabyasachi_about.jpg&f=1) no-repeat center center fixed",
+        //     WebkitBackgroundSize: "cover",
+        //     MozBackgroundSize: "cover",
+        //     OBackgroundSize: "cover",
+        //     backgroundSize: "cover"
+        // }
         return (
-            <React.Fragment>
-                {/* <div>
-                    <NavBar />
-                </div> */}
-                {/* <div className="homeButtons" style={styles}>
-                <div className="logoutButton">
-                <button onClick={() => {
-                    localStorage.clear("credentials")
-                    document.location.href='http://localhost:3000'
-                }}
-                    className="logoutButton">Logout</button>
-                    </div> */}
-                {/* <div className="loginButton">
-                        <button type="button"
-                            className="btn btn-success"
-                            onClick={() => {
-                                this.props.history.push("/login")
-                            }
-                            }>Login</button>
-                    </div>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <div className="registerButton">
-                        <button type="button"
-                            className="btn btn-success"
-                            onClick={() => {
-                                this.props.history.push("/register")
-                            }
-                            }>Create Account</button>
-                    </div> */}
-
-
-
-            </React.Fragment>
+            <div>
+            <h2>I'm here</h2>
+            <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+            <ul className="nav nav-pills">
+                <li className="nav-item">
+                    <Link className="nav-link" to="/projects">Projects</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/castMembers">Cast</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link"
+                    to="/crewMembers">Crew</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/notes">Director's Notes</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link"
+                    to="/scenes">Scenes</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link"
+                    to="/sceneProps">Props</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link"
+                    to="/locations">Locations</Link>
+                </li>
+            </ul>
+            <button onClick={() => {
+                localStorage.clear("credentials")
+                document.location.href='http://localhost:3000'
+            }}
+            className="logoutButton">Logout</button>
+            </nav>
+            </div>
         )
-
     }
 
 }

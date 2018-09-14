@@ -27,7 +27,7 @@ constructNewCastMember = (evt) => {
         castMemberId: this.props.castMembers.find(e => e.name === this.state.castMember).id,
         characterName: this.state.characterName,
         details: this.state.details,
-        projectId: this.props.projects.find(e => e.name === this.state.project).id,
+        project: this.props.projects.find(e => e.id === this.state.project).id,
 
         id: this.state.id
     }

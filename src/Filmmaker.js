@@ -8,7 +8,7 @@ class Filmmaker extends Component {
     render() {
         return (
             <React.Fragment>
-                <NavBar />
+                {/* <NavBar /> */}
                 <Header />
                 <ApplicationViews />
             </React.Fragment>

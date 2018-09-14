@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import "./project.css"
+
 class ProjectList extends Component {
     state = {
         projectName: "",
-        // characterName: "",
         details: "",
         isNeeded: false
     }
@@ -13,6 +13,7 @@ class ProjectList extends Component {
         const complete = { isNeeded: true }
 
         return (<React.Fragment>
+
             <form className="projectListForm">
                 <div className="projectButton">
                     <button type="button"
@@ -23,6 +24,13 @@ class ProjectList extends Component {
                         }>
                         Click to add your Project
                 </button>
+                </div>
+                <div className="logoutButton">
+                    <button onClick={() => {
+                        localStorage.clear("credentials")
+                        document.location.href = 'http://localhost:3000'
+                    }}
+                        className="logoutButton">Logout</button>
                 </div>
                 <div className="checkbox">
                     <section className="projects">
