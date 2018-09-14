@@ -18,7 +18,7 @@ export default class NoteEditForm extends Component {
 
     componentDidMount() {
         // console.log(this.state)
-        const note = this.props.notes.find(a => a.id === parseInt(this.props.match.params.noteId))
+        const note = this.props.notes.find(a => a.id === parseInt(this.props.match.params.noteId, 0))
         this.setState(note);
     }
     constructNewNote = (evt) => {

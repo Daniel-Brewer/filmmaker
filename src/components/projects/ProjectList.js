@@ -32,7 +32,6 @@ class ProjectList extends Component {
                     }}
                         className="logoutButton">Logout</button>
                 </div>
-                <div className="checkbox">
                     <section className="projects">
                         {
                             this.props.projects.map(project =>
@@ -71,7 +70,6 @@ class ProjectList extends Component {
                             )
                         }
                     </section>
-                </div>
             </form>
         </React.Fragment>
         )
