@@ -75,11 +75,17 @@ export default class ApplicationViews extends Component {
       user: user
     }))
 
-  addCastMember = castMember => DataManager.add("castMembers", castMember)
-    .then(() => DataManager.getNeededCastMembers("castMembers"))
+  addCastMemberToProject = castMember => DataManager.add("castMembers", castMember)
+    .then(() => DataManager.getCastMembersInProject("castMembers"))
     .then(castMembers => this.setState({
-      castMembers: castMembers
+      currentProject: castMembers
     }))
+
+  // addCastMember = castMember => DataManager.add("castMembers", castMember)
+  //   .then(() => DataManager.getNeededCastMembers("castMembers"))
+  //   .then(castMembers => this.setState({
+  //     castMembers: castMembers
+  //   }))
 
   deleteCastMember = id => DataManager.delete("castMembers", id)
     .then(() => DataManager.getNeededCastMembers("castMembers"))
@@ -217,7 +223,7 @@ export default class ApplicationViews extends Component {
         newState.projects = allProjects
       })
       .then(() => {
-        DataManager.getNeededCastMembers("castMembers")
+        DataManager.getCastMembersInProject("castMembers")
           .then(allCastMembers => {
             newState.castMembers = allCastMembers
           })
@@ -274,7 +280,7 @@ export default class ApplicationViews extends Component {
           addUser={this.addUser}
           users={this.state.users} />
         }} />
-        <Route exact path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/castMembers" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberList {...props}
@@ -291,8 +297,9 @@ export default class ApplicationViews extends Component {
         <Route exact path="/castMembers/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberForm {...props}
-              addCastMember={this.addCastMember}
+              addCastMemberToProject={this.addCastMemberToProject}
               activeUser={this.state.activeUser}
+              currentProject={this.state.currentProject}
             />
           } else {
             return <Redirect to="/" />

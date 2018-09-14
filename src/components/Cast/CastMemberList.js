@@ -44,7 +44,6 @@ class CastMemberList extends Component {
                                             <br></br>
                                             {castMember.detail}
                                             <br></br>
-
                                             <Link className="nav-link" to={`/castMembers/${castMember.id}`}>Details</Link>
                                             <button
                                                 onClick={() => this.props.deleteCastMember(castMember.id)}
