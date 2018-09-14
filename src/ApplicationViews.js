@@ -2,7 +2,6 @@ import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from 'react';
 import DataManager from './modules/DataManager'
 import Dashboard from './components/dashboard/Dashboard'
-import LandingPage from './components/landingPage/LandingPage'
 import Login from './components/login/LoginForm'
 import Register from './components/login/RegisterForm'
 import CastMemberDetail from './components/cast/CastMemberDetails'
@@ -49,6 +48,7 @@ export default class ApplicationViews extends Component {
     locations: [],
     activeUser: [],
     projects: [],
+    currentproject: [],
     isLoaded: false
   }
 
@@ -210,6 +210,12 @@ export default class ApplicationViews extends Component {
       .then(allUsers => {
         newState.users = allUsers
       })
+    let currentProject = 
+    newState.activeProject = currentProject;
+    DataManager.getAll("projects")
+      .then(allProjects => {
+        newState.projects = allProjects
+      })
       .then(() => {
         DataManager.getNeededCastMembers("castMembers")
           .then(allCastMembers => {
@@ -261,14 +267,14 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
         {/* put project page in place of homepage and create path to homepage from */}
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" render={(props) => {
           return <Register {...props}
-            addUser={this.addUser}
-            users={this.state.users} />
+          addUser={this.addUser}
+          users={this.state.users} />
         }} />
+        <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/castMembers" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberList {...props}
@@ -407,7 +413,6 @@ export default class ApplicationViews extends Component {
               editProject={this.editProject}
               projects={this.state.projects}
               activeUser={this.state.activeUser}
-            // projects={this.state.projects}
             />
           } else {
             return <Redirect to="/" />

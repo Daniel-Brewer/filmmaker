@@ -36,10 +36,6 @@ class NavBar extends Component {
                         <Link className="nav-link"
                         to="/locations">Locations</Link>
                     </li>
-                    {/* <li className="nav-item">
-                        <Link className="nav-link"
-                        to="/friends">Friends</Link>
-                    </li> */}
                 </ul>
                 <button onClick={() => {
                     localStorage.clear("credentials")

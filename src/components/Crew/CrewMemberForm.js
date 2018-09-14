@@ -29,6 +29,7 @@ export default class CrewMemberForm extends Component {
                 job: this.state.job,
                 details: this.state.details,
                 user: this.props.activeUser.id,
+                project: this.props.activeProject.id,
                 isChecked: false
             }
 
