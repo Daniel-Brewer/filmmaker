@@ -27,6 +27,7 @@ export default class ScenePropForm extends Component {
                 scenePropName: this.state.scenePropName,
                 details: this.state.details,
                 user: this.props.activeUser.id,
+                project: this.props.currentProject.id,
                 isChecked: false
             }
 
@@ -43,14 +44,14 @@ render() {
             <form className="scenePropForm border border-dark">
                 <div className="form-group">
                     <label htmlFor="scenePropName">Scene Prop Name</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="scenePropName"
                         placeholder="SceneProp name" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="details">Details</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="details"
                         placeholder="Add details" />

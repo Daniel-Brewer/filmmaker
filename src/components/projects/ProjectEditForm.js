@@ -44,7 +44,7 @@ render() {
             <form className="projectForm">
                 <div className="form-group">
                     <label htmlFor="projectName">Project Name</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="projectName"
                         placeholder={this.state.projectName} />
@@ -59,7 +59,7 @@ render() {
 
                 <div className="form-group">
                     <label htmlFor="details">Details</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="details"
                         placeholder={this.state.details}/>
