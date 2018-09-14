@@ -21,7 +21,7 @@ export default Object.create(null, {
 
     },
     
-    getNeededCastMembers: {
+    getCastMembersInProject: {
         value: (resource) => {
             return fetch(`${remoteURL}/${resource}`)
             .then(result => result.json())

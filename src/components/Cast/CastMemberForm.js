@@ -29,12 +29,12 @@ export default class CastMemberForm extends Component {
                 characterName: this.state.characterName,
                 details: this.state.details,
                 user: this.props.activeUser.id,
-                project: this.props.project.id,
+                project: this.props.currentProject,
                 isChecked: false
             }
 
             // Create the animal and redirect user to animal list
-            this.props.addCastMember(castMember).then(() => this.props.history.push("/castMembers"))
+            this.props.addCastMemberToProject(castMember).then(() => this.props.history.push("/castMembers"))
         }
     }
     handleButtonClick = () => {
@@ -46,14 +46,14 @@ render() {
             <form className="castMemberForm border border-dark">
                 <div className="form-group">
                     <label htmlFor="castMemberName">Cast Member Name</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="castMemberName"
                         placeholder="CastMember name" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="characterName">Character Name</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="characterName"
                         placeholder="Character name" />
@@ -61,7 +61,7 @@ render() {
                
                 <div className="form-group">
                     <label htmlFor="details">Details</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="details"
                         placeholder="Add details" />
