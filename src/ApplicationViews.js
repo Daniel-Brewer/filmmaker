@@ -75,134 +75,134 @@ export default class ApplicationViews extends Component {
       user: user
     }))
 
-  addCastMemberToProject = castMember => DataManager.add("castMembers", castMember)
-    .then(() => DataManager.getCastMembersInProject("castMembers"))
-    .then(castMembers => this.setState({
-      currentProject: castMembers
-    }))
-
-  // addCastMember = castMember => DataManager.add("castMembers", castMember)
-  //   .then(() => DataManager.getNeededCastMembers("castMembers"))
+  // addCastMemberToProject = castMember => DataManager.add("castMembers", castMember)
+  //   .then(() => DataManager.getCastMembersInProject("castMembers"))
   //   .then(castMembers => this.setState({
-  //     castMembers: castMembers
+  //     currentProject: castMembers
   //   }))
 
+  addCastMember = castMember => DataManager.add("castMembers", castMember)
+    .then(() => DataManager.getCastMembersInProject("castMembers"))
+    .then(castMembers => this.setState({
+      castMembers: castMembers
+    }))
+
   deleteCastMember = id => DataManager.delete("castMembers", id)
-    .then(() => DataManager.getNeededCastMembers("castMembers"))
+    .then(() => DataManager.getCastMembersInProject("castMembers"))
     .then(castMembers => this.setState({
       castMembers: castMembers
     }))
 
   editCastMember = (id, castMembers) => DataManager.edit("castMembers", id, castMembers)
-    .then(() => DataManager.getNeededCastMembers("castMembers"))
+    .then(() => DataManager.getCastMembersInProject("castMembers"))
     .then(castMembers => this.setState({
       castMembers: castMembers
     }))
 
   addCrewMember = crewMember => DataManager.add("crewMembers", crewMember)
-    .then(() => DataManager.getNeededCrewMembers("crewMembers"))
+    .then(() => DataManager.getCrewMembersInProject("crewMembers"))
     .then(crewMembers => this.setState({
       crewMembers: crewMembers
     }))
 
   deleteCrewMember = id => DataManager.delete("crewMembers", id)
-    .then(() => DataManager.getNeededCrewMembers("crewMembers"))
+    .then(() => DataManager.getCrewMembersInProject("crewMembers"))
     .then(crewMembers => this.setState({
       crewMembers: crewMembers
     }))
 
   editCrewMember = (id, crewMembers) => DataManager.edit("crewMembers", id, crewMembers)
-    .then(() => DataManager.getNeededCrewMembers("crewMembers"))
+    .then(() => DataManager.getCrewMembersInProject("crewMembers"))
     .then(crewMembers => this.setState({
       crewMembers: crewMembers
     }))
 
   addNote = note => DataManager.add("notes", note)
-    .then(() => DataManager.getNeededNotes("notes"))
+    .then(() => DataManager.getNotesInProject("notes"))
     .then(notes => this.setState({
       notes: notes
     }))
 
   deleteNote = id => DataManager.delete("notes", id)
-    .then(() => DataManager.getNeededNotes("notes"))
+    .then(() => DataManager.getNotesInProject("notes"))
     .then(notes => this.setState({
       notes: notes
     }))
 
   editNote = (id, notes) => DataManager.edit("notes", id, notes)
-    .then(() => DataManager.getNeededNotes("notes"))
+    .then(() => DataManager.getNotesInProject("notes"))
     .then(notes => this.setState({
       notes: notes
     }))
 
   addProject = project => DataManager.add("projects", project)
-    .then(() => DataManager.getNeededProjects("projects"))
+    .then(() => DataManager.getUserProjects("projects"))
     .then(projects => this.setState({
       projects: projects
     }))
 
   deleteProject = id => DataManager.delete("projects", id)
-    .then(() => DataManager.getNeededProjects("projects"))
+    .then(() => DataManager.getUserProjects("projects"))
     .then(projects => this.setState({
       projects: projects
     }))
 
   editProject = (id, projects) => DataManager.edit("projects", id, projects)
-    .then(() => DataManager.getNeededProjects("projects"))
+    .then(() => DataManager.getUserProjects("projects"))
     .then(projects => this.setState({
       projects: projects
     }))
 
   addScene = scene => DataManager.add("scenes", scene)
-    .then(() => DataManager.getNeededScenes("scenes"))
+    .then(() => DataManager.getScenesInProject("scenes"))
     .then(scenes => this.setState({
       scenes: scenes
     }))
 
   deleteScene = id => DataManager.delete("scenes", id)
-    .then(() => DataManager.getNeededScenes("scenes"))
+    .then(() => DataManager.getScenesInProject("scenes"))
     .then(scenes => this.setState({
       scenes: scenes
     }))
 
   editScene = (id, scenes) => DataManager.edit("scenes", id, scenes)
-    .then(() => DataManager.getNeededScenes("scenes"))
+    .then(() => DataManager.getScenesInProject("scenes"))
     .then(scenes => this.setState({
       scenes: scenes
     }))
 
   addSceneProp = sceneProp => DataManager.add("sceneProps", sceneProp)
-    .then(() => DataManager.getNeededSceneProps("sceneProps"))
+    .then(() => DataManager.getScenePropsInProject("sceneProps"))
     .then(sceneProps => this.setState({
       sceneProps: sceneProps
     }))
 
   deleteSceneProp = id => DataManager.delete("sceneProps", id)
-    .then(() => DataManager.getNeededSceneProps("sceneProps"))
+    .then(() => DataManager.getScenePropsInProject("sceneProps"))
     .then(sceneProps => this.setState({
       sceneProps: sceneProps
     }))
 
   editSceneProp = (id, sceneProps) => DataManager.edit("sceneProps", id, sceneProps)
-    .then(() => DataManager.getNeededSceneProps("sceneProps"))
+    .then(() => DataManager.getScenePropsInProject("sceneProps"))
     .then(sceneProps => this.setState({
       sceneProps: sceneProps
     }))
 
   addLocation = location => DataManager.add("locations", location)
-    .then(() => DataManager.getNeededLocations("locations"))
+    .then(() => DataManager.getLocationsInProject("locations"))
     .then(locations => this.setState({
       locations: locations
     }))
 
   deleteLocation = id => DataManager.delete("locations", id)
-    .then(() => DataManager.getNeededLocations("locations"))
+    .then(() => DataManager.getLocationsInProject("locations"))
     .then(locations => this.setState({
       locations: locations
     }))
 
   editLocation = (id, locations) => DataManager.edit("locations", id, locations)
-    .then(() => DataManager.getNeededLocations("locations"))
+    .then(() => DataManager.getLocationsInProject("locations"))
     .then(locations => this.setState({
       locations: locations
     }))
@@ -228,32 +228,32 @@ export default class ApplicationViews extends Component {
             newState.castMembers = allCastMembers
           })
           .then(() => {
-            DataManager.getNeededCrewMembers("crewMembers")
+            DataManager.getCrewMembersInProject("crewMembers")
               .then(allCrewMembers => {
                 newState.crewMembers = allCrewMembers
               })
               .then(() => {
-                DataManager.getNeededNotes("notes")
+                DataManager.getNotesInProject("notes")
                   .then(allNotes => {
                     newState.notes = allNotes
                   })
                   .then(() => {
-                    DataManager.getNeededScenes("scenes")
+                    DataManager.getScenesInProject("scenes")
                       .then(allScenes => {
                         newState.scenes = allScenes
                       })
                       .then(() => {
-                        DataManager.getNeededSceneProps("sceneProps")
+                        DataManager.getScenePropsInProject("sceneProps")
                           .then(allSceneProps => {
                             newState.sceneProps = allSceneProps
                           })
                           .then(() => {
-                            DataManager.getNeededLocations("locations")
+                            DataManager.getLocationsInProject("locations")
                               .then(allLocations => {
                                 newState.locations = allLocations
                               })
                               .then(() => {
-                                DataManager.getNeededProjects("projects")
+                                DataManager.getUserProjects("projects")
                                   .then(allProjects => {
                                     newState.projects = allProjects
                                   })
@@ -297,7 +297,7 @@ export default class ApplicationViews extends Component {
         <Route exact path="/castMembers/new" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberForm {...props}
-              addCastMemberToProject={this.addCastMemberToProject}
+              addCastMember={this.addCastMember}
               activeUser={this.state.activeUser}
               currentProject={this.state.currentProject}
             />

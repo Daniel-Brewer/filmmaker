@@ -35,7 +35,7 @@ export default class CastMemberForm extends Component {
             }
 
             // Create the animal and redirect user to animal list
-            this.props.addCastMemberToProject(castMember).then(() => this.props.history.push("/castMembers"))
+            this.props.addCastMember(castMember).then(() => this.props.history.push("/castMembers"))
         }
     }
     handleButtonClick = () => {
