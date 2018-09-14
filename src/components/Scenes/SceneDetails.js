@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 
 
@@ -14,6 +15,17 @@ export default class SceneDetail extends Component {
         const scene = this.props.scenes.find(t => t.id === parseInt(this.props.match.params.sceneId, 0)) || {}
 
         return (
+            <div>
+            <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+                <ul className="nav nav-pills">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/projects">Projects</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/scenes">Scenes</Link>
+                    </li>
+                </ul>
+            </nav>
             <section className="scene">
                 <div key={scene.id} className="detail-card">
                     <div className="card-body">
@@ -31,6 +43,7 @@ export default class SceneDetail extends Component {
                     </div>
                 </div>
             </section>
+            </div>
         )
     }
 }

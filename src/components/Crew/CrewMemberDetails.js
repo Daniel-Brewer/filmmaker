@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 
 
@@ -14,6 +15,17 @@ export default class CrewMemberDetail extends Component {
         const crewMember = this.props.crewMembers.find(t => t.id === parseInt(this.props.match.params.crewMemberId, 0)) || {}
 
         return (
+            <div>
+            <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+       <ul className="nav nav-pills">
+           <li className="nav-item">
+               <Link className="nav-link" to="/projects">Projects</Link>
+           </li>
+           <li className="nav-item">
+               <Link className="nav-link" to="/crewMembers">Crew</Link>
+           </li>
+           </ul>
+           </nav>
             <section className="crewMember">
                 <div key={crewMember.id} className="detail-card">
                     <div className="card-body">
@@ -35,6 +47,7 @@ export default class CrewMemberDetail extends Component {
                     </div>
                 </div>
             </section>
+            </div>
         )
     }
 }

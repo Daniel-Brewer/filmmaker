@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 import "./crew.css"
 class CrewMemberList extends Component {
     state = {
@@ -11,17 +12,24 @@ class CrewMemberList extends Component {
 
     render() {
 
-        
+
         const complete = { isNeeded: true }
 
         return (<React.Fragment>
+            <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+                <ul className="nav nav-pills">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/projects">Projects</Link>
+                    </li>
+                </ul>
+            </nav>
             <form className="crewMemberListForm">
                 <div className="crewMemberButton">
                     <button type="button"
                         className="btn btn-success"
-                        onClick={() => 
+                        onClick={() =>
                             this.props.history.push("/crewMembers/new")
-                        
+
                         }>
                         Click to add your Crew Member
                 </button>
@@ -57,8 +65,8 @@ class CrewMemberList extends Component {
                                             onClick={() => this.props.editCrewMember(crewMember.id, complete)
                                             }
                                             className="card-link btn btn-secondary btn-lg btn-block">Needed
-                                         </button>  
-                                          
+                                         </button>
+
                                         {/* {id} */}
                                     </label>
                                 </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "../login/Login.css"
-
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 export default class CrewMemberForm extends Component {
     // Set initial state
@@ -40,37 +41,44 @@ export default class CrewMemberForm extends Component {
     handleButtonClick = () => {
         document.location.href = 'http://localhost:3000/crewMembers'
     }
-render() {
-    return (
-        <React.Fragment>
-            <form className="crewMemberForm border border-dark">
-                <div className="form-group">
-                    <label htmlFor="crewMemberName">Crew Member Name</label>
-                    <input type="text" required={true}
-                        onChange={this.handleFieldChange}
-                        id="crewMemberName"
-                        placeholder="CrewMember name" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="job">Job</label>
-                    <input type="text" required={true}
-                        onChange={this.handleFieldChange}
-                        id="job"
-                        placeholder="job" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="details">Details</label>
-                    <input type="text" required={true}
-                        onChange={this.handleFieldChange}
-                        id="details"
-                        placeholder="Add details" />
-                </div>
-                <button type="submit" onClick={this.constructNewCrewMember}
-                    className="btn btn-primary">Submit</button>
+    render() {
+        return (
+            <React.Fragment>
+                <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+                    <ul className="nav nav-pills">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/projects">Projects</Link>
+                        </li>
+                    </ul>
+                </nav>
+                <form className="crewMemberForm border border-dark">
+                    <div className="form-group">
+                        <label htmlFor="crewMemberName">Crew Member Name</label>
+                        <input type="text" required={true}
+                            onChange={this.handleFieldChange}
+                            id="crewMemberName"
+                            placeholder="CrewMember name" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="job">Job</label>
+                        <input type="text" required={true}
+                            onChange={this.handleFieldChange}
+                            id="job"
+                            placeholder="job" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="details">Details</label>
+                        <input type="text" required={true}
+                            onChange={this.handleFieldChange}
+                            id="details"
+                            placeholder="Add details" />
+                    </div>
+                    <button type="submit" onClick={this.constructNewCrewMember}
+                        className="btn btn-primary">Submit</button>
 
 
-            </form>
-        </React.Fragment>
-    )
-}
+                </form>
+            </React.Fragment>
+        )
     }
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 // the edit button will live on Cast Member Detail
 
 export default class SceneEditForm extends Component {
@@ -39,10 +40,20 @@ export default class SceneEditForm extends Component {
     render() {
         return (
             <React.Fragment>
+                  <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+                    <ul className="nav nav-pills">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/projects">Projects</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/scenes">Scenes</Link>
+                        </li>
+                    </ul>
+                </nav>
                 <form className="sceneForm">
                     <div className="form-group">
                         <label htmlFor="sceneName">Scene Name</label>
-                        <input type="text" required="true"
+                        <input type="text" required={true}
                             onChange={this.handleFieldChange}
                             id="sceneName"
                             placeholder={this.state.sceneName} />
@@ -50,7 +61,7 @@ export default class SceneEditForm extends Component {
                     <br></br>
                     <div className="form-group">
                         <label htmlFor="details">Details</label>
-                        <input type="text" required="true"
+                        <input type="text" required={true}
                             onChange={this.handleFieldChange}
                             id="details"
                             placeholder={this.state.details} />

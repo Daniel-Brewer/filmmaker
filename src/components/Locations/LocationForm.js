@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 import "../login/Login.css"
 
 
@@ -40,6 +42,13 @@ export default class LocationForm extends Component {
 render() {
     return (
         <React.Fragment>
+             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+                    <ul className="nav nav-pills">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/projects">Projects</Link>
+                        </li>
+                    </ul>
+                </nav>
             <form className="locationForm border border-dark">
                 <div className="form-group">
                     <label htmlFor="locationName">Location Name</label>

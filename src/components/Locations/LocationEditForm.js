@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 // the edit button will live on Cast Member Detail
 
 export default class LocationEditForm extends Component {
@@ -16,8 +17,8 @@ export default class LocationEditForm extends Component {
 
     componentDidMount() {
         // console.log(this.state)
-        const loaction = this.props.loactions.find(a => a.id === parseInt(this.props.match.params.loactionId, 0))
-        this.setState(loaction);
+        const location = this.props.locations.find(a => a.id === parseInt(this.props.match.params.locationId, 0))
+        this.setState(location);
     }
     constructNewLocation = (evt) => {
         evt.preventDefault()
@@ -39,6 +40,16 @@ export default class LocationEditForm extends Component {
     render() {
         return (
             <React.Fragment>
+                <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+                    <ul className="nav nav-pills">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/projects">Projects</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/locations">Locations</Link>
+                        </li>
+                    </ul>
+                </nav>
                 <form className="locationForm">
                     <div className="form-group">
                         <label htmlFor="locationName">Location Name</label>
