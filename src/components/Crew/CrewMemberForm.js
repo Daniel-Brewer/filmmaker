@@ -46,21 +46,21 @@ render() {
             <form className="crewMemberForm border border-dark">
                 <div className="form-group">
                     <label htmlFor="crewMemberName">Crew Member Name</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="crewMemberName"
                         placeholder="CrewMember name" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="job">Job</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="job"
                         placeholder="job" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="details">Details</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="details"
                         placeholder="Add details" />

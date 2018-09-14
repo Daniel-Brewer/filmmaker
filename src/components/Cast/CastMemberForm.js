@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "../login/Login.css"
-
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 export default class CastMemberForm extends Component {
     // Set initial state
@@ -43,6 +44,13 @@ export default class CastMemberForm extends Component {
 render() {
     return (
         <React.Fragment>
+            <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+            <ul className="nav nav-pills">
+                <li className="nav-item">
+                    <Link className="nav-link" to="/projects">Projects</Link>
+                </li>
+                </ul>
+                </nav>
             <form className="castMemberForm border border-dark">
                 <div className="form-group">
                     <label htmlFor="castMemberName">Cast Member Name</label>
@@ -68,6 +76,7 @@ render() {
                 </div>
                 <button type="submit" onClick={this.constructNewCastMember}
                     className="btn btn-primary">Submit</button>
+
 
 
             </form>

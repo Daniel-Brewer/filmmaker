@@ -42,7 +42,7 @@ export default class LocationEditForm extends Component {
                 <form className="locationForm">
                     <div className="form-group">
                         <label htmlFor="locationName">Location Name</label>
-                        <input type="text" required="true"
+                        <input type="text" required={true}
                             onChange={this.handleFieldChange}
                             id="locationName"
                             placeholder={this.state.locationName} />
@@ -50,7 +50,7 @@ export default class LocationEditForm extends Component {
                     <br></br>
                     <div className="form-group">
                         <label htmlFor="details">Details</label>
-                        <input type="text" required="true"
+                        <input type="text" required={true}
                             onChange={this.handleFieldChange}
                             id="details"
                             placeholder={this.state.details} />

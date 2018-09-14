@@ -5,8 +5,7 @@ import "../login/Login.css"
 export default class ProjectForm extends Component {
     // Set initial state
     state = {
-        projectName: "",
-        // userName: "",
+        projectName: "",     
         details: "",
         isChecked: false
     }
@@ -45,7 +44,7 @@ render() {
             <form className="projectForm border border-dark">
                 <div className="form-group">
                     <label htmlFor="projectName">Project Name</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="projectName"
                         placeholder="Project name" />
@@ -60,7 +59,7 @@ render() {
                
                 <div className="form-group">
                     <label htmlFor="details">Details</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="details"
                         placeholder="Add details" />
