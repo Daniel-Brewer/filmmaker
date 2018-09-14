@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 import './note.css'
 class NoteList extends Component {
     findUserName = notes => {
@@ -14,7 +16,13 @@ class NoteList extends Component {
 
         return (
             <React.Fragment>
-
+                <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+                    <ul className="nav nav-pills">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/projects">Projects</Link>
+                        </li>
+                    </ul>
+                </nav>
                 <div className="notesButton">
                     <button type="button"
                         className="btn btn-success"

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 import "./scene.css"
 class SceneList extends Component {
     state = {
@@ -14,6 +15,13 @@ class SceneList extends Component {
         const complete = { isNeeded: true }
 
         return (<React.Fragment>
+             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+                <ul className="nav nav-pills">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/projects">Projects</Link>
+                    </li>
+                </ul>
+            </nav>
             <form className="sceneListForm">
                 <div className="sceneButton">
                     <button type="button"

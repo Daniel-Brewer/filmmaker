@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import { Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 export default class NoteForm extends Component {
 
 
@@ -30,13 +31,20 @@ export default class NoteForm extends Component {
         }
 
         this.props.addNote(notes)
-        .then(() => this.props.history.push("/notes"))
+            .then(() => this.props.history.push("/notes"))
     }
 
     render() {
 
         return (
             <React.Fragment>
+                <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+                    <ul className="nav nav-pills">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/projects">Projects</Link>
+                        </li>
+                    </ul>
+                </nav>
                 <h2>note</h2>
                 <form className="noteForm">
                     <div className="form-group">
@@ -44,7 +52,7 @@ export default class NoteForm extends Component {
                             <label htmlFor="noteId"></label>
                             <label htmlFor="noteTo">Note To:</label>
                             <p></p>
-                            <input type="text" required="true"
+                            <input type="text" required={true}
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="noteTo"
