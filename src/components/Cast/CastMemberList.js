@@ -56,7 +56,11 @@ class CastMemberList extends Component {
                                             <button
                                                 onClick={() => this.props.deleteCastMember(castMember.id)}
                                                 className="card-link btn btn-primary btn-sm">Delete Cast Member</button>
-
+                                            <br></br>
+                                            <br></br>
+                                            <button
+                                                onClick={() => this.props.history.push(`/castMembers/edit/${castMember.id}`)}
+                                                className="card-link">Edit</button>
                                         </h6>
                                     </div>
                                     <label>

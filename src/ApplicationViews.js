@@ -215,13 +215,20 @@ export default class ApplicationViews extends Component {
     DataManager.getAll("users")
       .then(allUsers => {
         newState.users = allUsers
-      })
-    let currentProject = 
-    newState.activeProject = currentProject;
-    DataManager.getAll("projects")
-      .then(allProjects => {
-        newState.projects = allProjects
-      })
+    //     let currentProject = JSON.parse(localStorage.getItem("projects"));  
+    //   newState.activeProject = currentProject;
+    // DataManager.getAll("projects")
+    //   .then(allProjects => {
+    //     newState.projects = allProjects
+    //   })
+    })
+    //   const newState = {}
+    //   let currentProject = this.state.project;  
+    //   newState.activeProject = currentProject;
+    // DataManager.getAll("projects")
+    //   .then(allProjects => {
+    //     newState.projects = allProjects
+    //   })
       .then(() => {
         DataManager.getCastMembersInProject("castMembers")
           .then(allCastMembers => {
@@ -277,8 +284,8 @@ export default class ApplicationViews extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" render={(props) => {
           return <Register {...props}
-          addUser={this.addUser}
-          users={this.state.users} />
+            addUser={this.addUser}
+            users={this.state.users} />
         }} />
         <Route path="/dashboard" component={Dashboard} />
         <Route exact path="/castMembers" render={(props) => {
