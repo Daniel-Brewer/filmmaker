@@ -28,7 +28,8 @@ export default class ScenePropForm extends Component {
                 scenePropName: this.state.scenePropName,
                 details: this.state.details,
                 user: this.props.activeUser.id,
-                project: this.props.currentProject.id,
+                // project: this.props.currentProject.id,
+                project: this.props.project,
                 isChecked: false
             }
 

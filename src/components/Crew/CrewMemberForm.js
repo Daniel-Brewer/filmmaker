@@ -24,13 +24,14 @@ export default class CrewMemberForm extends Component {
 
     constructNewCrewMember = evt => {
         evt.preventDefault()
-        if (this.state.job === "" || this.state.crewMemberName === "" || this.state.details === "") {
+        if (this.state.job === "" || this.state.crewMemberName === "" || this.state.phone === ""|| this.state.email === "") {
             window.alert("Please input all fields!")
         } else {
             const crewMember = {
                 crewMemberName: this.state.crewMemberName,
                 job: this.state.job,
-                details: this.state.details,
+                phone: this.state.phone,
+                email: this.state.email,
                 user: this.props.activeUser.id,
                 // project: this.props.currentProject.id,
                 isChecked: false
@@ -69,11 +70,18 @@ export default class CrewMemberForm extends Component {
                             placeholder="job" />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="details">Details</label>
-                        <input type="text" required={true}
+                        <label htmlFor="phone">Phone</label>
+                        <input type="tel" required={true}
                             onChange={this.handleFieldChange}
-                            id="details"
-                            placeholder="Add details" />
+                            id="phone"
+                            placeholder="Add phone" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" required={true}
+                            onChange={this.handleFieldChange}
+                            id="email"
+                            placeholder="Add email" />
                     </div>
                     <button type="submit" onClick={this.constructNewCrewMember}
                         className="btn btn-primary">Submit</button>

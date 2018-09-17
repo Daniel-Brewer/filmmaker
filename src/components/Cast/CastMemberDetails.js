@@ -35,7 +35,9 @@ export default class CastMemberDetail extends Component {
                         <h5 className="card-title"> plays </h5>
                         <h5 className="card-title"> {castMember.characterName} </h5>
                         <br></br>
-                        <h6 className="card-title">{castMember.details}</h6>
+                        <h6 className="card-title">{castMember.phone}</h6>
+                        <br></br>
+                        <h6 className="card-title">{castMember.email}</h6>
                         <br></br>
                         <button
                             onClick={() => this.props.deleteCastMember(castMember.id)

@@ -27,7 +27,8 @@ constructNewCastMember = (evt) => {
         castMemberName: this.state.castMemberName,
         castMemberId: this.props.castMembers.find(e => e.name === this.state.castMember).id,
         characterName: this.state.characterName,
-        details: this.state.details,
+        phone: this.state.phone,
+        email: this.state.email,
         // project: this.props.projects.find(e => e.projectId === this.state.project).id,
 
         id: this.state.id
@@ -70,11 +71,18 @@ render() {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="details">Details</label>
+                    <label htmlFor="phone">Phone</label>
                     <input type="text" required={true}
                         onChange={this.handleFieldChange}
-                        id="details"
-                        placeholder={this.state.details}/>
+                        id="phone"
+                        placeholder={this.state.phone}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input type="email" required={true}
+                        onChange={this.handleFieldChange}
+                        id="email"
+                        placeholder={this.state.email}/>
                 </div>
                 <button type="submit" onClick={this.constructNewCastMember}
                 className="btn btn-primary">Submit</button>

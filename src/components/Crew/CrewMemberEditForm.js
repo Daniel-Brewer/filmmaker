@@ -67,12 +67,19 @@ export default class CrewMemberEditForm extends Component {
                             placeholder={this.state.job} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="details">Details</label>
-                        <input type="text" required={true}
-                            onChange={this.handleFieldChange}
-                            id="details"
-                            placeholder={this.state.details} />
-                    </div>
+                    <label htmlFor="phone">Phone</label>
+                    <input type="text" required={true}
+                        onChange={this.handleFieldChange}
+                        id="phone"
+                        placeholder={this.state.phone}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input type="email" required={true}
+                        onChange={this.handleFieldChange}
+                        id="email"
+                        placeholder={this.state.email}/>
+                </div>
                     <button type="submit" onClick={this.constructNewCrewMember}
                         className="btn btn-primary">Submit</button>
 

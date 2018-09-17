@@ -8,7 +8,9 @@ export default class CastMemberForm extends Component {
     state = {
         castMemberName: "",
         characterName: "",
-        details: "",
+        phone: "",
+        email: "",
+        projects:[],
         isChecked: false
     }
 
@@ -22,15 +24,16 @@ export default class CastMemberForm extends Component {
 
     constructNewCastMember = evt => {
         evt.preventDefault()
-        if (this.state.characterName === "" || this.state.castMemberName === "" || this.state.details === "") {
+        if (this.state.characterName === "" || this.state.castMemberName === "" || this.state.phone === ""|| this.state.email === "") {
             window.alert("Please input all fields!")
         } else {
             const castMember = {
                 castMemberName: this.state.castMemberName,
                 characterName: this.state.characterName,
-                details: this.state.details,
+                phone: this.state.phone,
+                email: this.state.email,
                 user: this.props.activeUser.id,
-                project: this.props.project,
+                projectId: this.props.projects.find(p => p.projectName === this.state.projects).id,
                 isChecked: false
             }
 
@@ -68,11 +71,18 @@ export default class CastMemberForm extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="details">Details</label>
-                        <input type="text" required={true}
+                        <label htmlFor="phone">Phone Number</label>
+                        <input type="tel" required={true}
                             onChange={this.handleFieldChange}
-                            id="details"
-                            placeholder="Add details" />
+                            id="phone"
+                            placeholder="Add phone" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" required={true}
+                            onChange={this.handleFieldChange}
+                            id="email"
+                            placeholder="Add email" />
                     </div>
                     <button type="submit" onClick={this.constructNewCastMember}
                         className="btn btn-primary">Submit</button>
