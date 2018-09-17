@@ -30,7 +30,7 @@ export default class CastMemberForm extends Component {
                 characterName: this.state.characterName,
                 details: this.state.details,
                 user: this.props.activeUser.id,
-                project: this.props.currentProject,
+                project: this.props.project,
                 isChecked: false
             }
 

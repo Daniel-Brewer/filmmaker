@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-
+import { Link } from "react-router-dom"
 
 export default class ProjectDetail extends Component {
     render() {
@@ -10,7 +10,21 @@ export default class ProjectDetail extends Component {
         */
         const project = this.props.projects.find(t => t.id === parseInt(this.props.match.params.projectId, 0)) || {}
 
-        return (
+        return (<React.Fragment>
+            <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+            <ul className="nav nav-pills">
+                <li className="nav-item">
+                    <Link className="nav-link" to="/projects">Projects</Link>
+                </li>
+                <li className="nav-item">
+                    <button onClick={() => {
+                        localStorage.clear("credentials")
+                        document.location.href = 'http://localhost:3000'
+                    }}
+                        className="logoutButton">Logout</button>
+                </li>
+            </ul>
+        </nav>
             <section className="project">
                 <div key={project.id} className="detail-card">
                     <div className="card-body">
@@ -29,6 +43,7 @@ export default class ProjectDetail extends Component {
                     </div>
                 </div>
             </section>
+            </React.Fragment>
         )
     }
 }

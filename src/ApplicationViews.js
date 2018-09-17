@@ -214,21 +214,23 @@ export default class ApplicationViews extends Component {
     newState.activeUser = localUser;
     DataManager.getAll("users")
       .then(allUsers => {
-        newState.users = allUsers
-    //     let currentProject = JSON.parse(localStorage.getItem("projects"));  
-    //   newState.activeProject = currentProject;
-    // DataManager.getAll("projects")
-    //   .then(allProjects => {
-    //     newState.projects = allProjects
-    //   })
-    })
-    //   const newState = {}
-    //   let currentProject = this.state.project;  
-    //   newState.activeProject = currentProject;
-    // DataManager.getAll("projects")
-    //   .then(allProjects => {
-    //     newState.projects = allProjects
-    //   })
+        newState.users = allUsers})
+          // .then(allProjects => {
+          //   let currentProject = this.state.projects;
+          //   newState.activeProject = currentProject;
+          //   DataManager.getAll("projects")
+          //     .then(allProjects => {
+          //       newState.projects = allProjects
+          //     })
+        
+     
+      //   const newState = {}
+      //   let currentProject = this.state.project;  
+      //   newState.activeProject = currentProject;
+      // DataManager.getAll("projects")
+      //   .then(allProjects => {
+      //     newState.projects = allProjects
+      //   })
       .then(() => {
         DataManager.getCastMembersInProject("castMembers")
           .then(allCastMembers => {
@@ -306,7 +308,8 @@ export default class ApplicationViews extends Component {
             return <CastMemberForm {...props}
               addCastMember={this.addCastMember}
               activeUser={this.state.activeUser}
-              currentProject={this.state.currentProject}
+              // currentProject={this.state.currentProject}
+              projects={this.state.projects}
             />
           } else {
             return <Redirect to="/" />
@@ -427,6 +430,7 @@ export default class ApplicationViews extends Component {
               editProject={this.editProject}
               projects={this.state.projects}
               activeUser={this.state.activeUser}
+              castMembers={this.state.castMembers}
             />
           } else {
             return <Redirect to="/" />
@@ -437,6 +441,8 @@ export default class ApplicationViews extends Component {
             return <ProjectForm {...props}
               addProject={this.addProject}
               activeUser={this.state.activeUser}
+              projects={this.state.projects}
+              castMembers={this.state.castMembers}
             />
           } else {
             return <Redirect to="/" />
@@ -447,6 +453,7 @@ export default class ApplicationViews extends Component {
             return <ProjectDetail {...props} deleteProject={this.deleteProject}
               projects={this.state.projects}
               activeUser={this.state.activeUser}
+              castMembers={this.state.castMembers}
             />
           } else {
             return <Redirect to="/" />
