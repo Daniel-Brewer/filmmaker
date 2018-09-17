@@ -12,9 +12,10 @@ export default class Dashboard extends Component {
         //     OBackgroundSize: "cover",
         //     backgroundSize: "cover"
         // }
-        return (
+        return (<React.Fragment>
+
             <div>
-            <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+            <nav className="navbar navbar-light fixed-top dark-blue flex-md-nowrap p-0 shadow">
             <ul className="nav nav-pills">
                 <li className="nav-item">
                     <Link className="nav-link" to="/projects">Projects</Link>
@@ -49,6 +50,7 @@ export default class Dashboard extends Component {
             className="logoutButton">Logout</button>
             </nav>
             </div>
+            </React.Fragment>
         )
     }
 

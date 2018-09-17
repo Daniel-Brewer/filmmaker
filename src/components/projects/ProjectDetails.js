@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 
+
 export default class ProjectDetail extends Component {
     render() {
         /*
@@ -13,12 +14,9 @@ export default class ProjectDetail extends Component {
             <section className="project">
                 <div key={project.id} className="detail-card">
                     <div className="card-body">
+
                         <h4 className="card-title">{project.name}</h4>
                         <br></br>
-                        {/* <h6>plays</h6> */}
-                        {/* <h5 className="card-title"> plays </h5>
-                        <h5 className="card-title"> {project.characterName} </h5>
-                        <br></br> */}
                         <h6 className="card-title">{project.details}</h6>
                         <br></br>
                         <button
