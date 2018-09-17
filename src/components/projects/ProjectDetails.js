@@ -29,9 +29,11 @@ export default class ProjectDetail extends Component {
                 <div key={project.id} className="detail-card">
                     <div className="card-body">
 
-                        <h4 className="card-title">{project.name}</h4>
+                        <h4 className="card-title">{project.projectName}</h4>
                         <br></br>
-                        <h6 className="card-title">{project.details}</h6>
+                        <h6 className="card-title">{project.projectDate}</h6>
+                        <br></br>
+                        <h6 className="card-title">{project.projectTime}</h6>
                         <br></br>
                         <button
                             onClick={() => this.props.deleteProject(project.id)
