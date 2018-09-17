@@ -52,14 +52,14 @@ render() {
             <form className="sceneForm border border-dark">
                 <div className="form-group">
                     <label htmlFor="sceneName">Scene Name</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="sceneName"
                         placeholder="Scene name" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="details">Details</label>
-                    <input type="text" required="true"
+                    <input type="text" required={true}
                         onChange={this.handleFieldChange}
                         id="details"
                         placeholder="Add details" />
