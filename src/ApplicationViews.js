@@ -215,12 +215,12 @@ export default class ApplicationViews extends Component {
     DataManager.getAll("users")
       .then(allUsers => {
         newState.users = allUsers
-    //     let currentProject = JSON.parse(localStorage.getItem("projects"));  
-    //   newState.activeProject = currentProject;
-    // DataManager.getAll("projects")
-    //   .then(allProjects => {
-    //     newState.projects = allProjects
-    //   })
+        let currentProject = JSON.parse(localStorage.getItem("projects"));  
+      newState.activeProject = currentProject;
+    DataManager.getAll("projects")
+      .then(allProjects => {
+        newState.projects = allProjects
+      })
     })
     //   const newState = {}
     //   let currentProject = this.state.project;  

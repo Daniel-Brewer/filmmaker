@@ -51,29 +51,29 @@ class ProjectList extends Component {
                                         {project.detail}
                                         <br></br>
 
-                                        <Link className="nav-link" to={`/dashboard/${project.id}`}>Project Dashboard</Link>
-                                        <button
-                                            onClick={() => this.props.deleteProject(project.id)}
-                                            className="card-link btn btn-primary btn-sm">Delete Project</button>
-                                            <br></br>
-                                            <br></br>
-                                            <button
-                            onClick={() => this.props.history.push(`/projects/edit/${project.id}`)}
-                            className="card-link">Edit</button>
-                                    </h6>
-                                </div>
-                                <label>
+                                    <Link className="nav-link" to={`/dashboard/${project.id}`}>Project Dashboard</Link>
                                     <button
-                                        onClick={() => this.props.editProject(project.id, complete)
-                                        }
-                                        className="card-link btn btn-secondary btn-lg btn-block">Completed
+                                        onClick={() => this.props.deleteProject(project.id)}
+                                        className="card-link btn btn-primary btn-sm">Delete Project</button>
+                                    <br></br>
+                                    <br></br>
+                                    <button
+                                        onClick={() => this.props.history.push(`/projects/edit/${project.id}`)}
+                                        className="card-link">Edit</button>
+                                </h6>
+                            </div>
+                            <label>
+                                <button
+                                    onClick={() => this.props.editProject(project.id, complete)
+                                    }
+                                    className="card-link btn btn-secondary btn-lg btn-block">Completed
                                          </button>
 
-                                    {/* {id} */}
-                                </label>
-                            </div>
-                        )
-                    }
+                                {/* {id} */}
+                            </label>
+                                </div>
+                    )
+                }
                 </section>
             </form>
 
