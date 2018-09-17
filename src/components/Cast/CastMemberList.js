@@ -29,7 +29,7 @@ class CastMemberList extends Component {
                             this.props.history.push("/castMembers/new")
 
                         }>
-                        Click to add your Cast Member
+                        Add Cast Member
                 </button>
                 </div>
                 <div className="checkbox">
@@ -48,11 +48,15 @@ class CastMemberList extends Component {
                                             {castMember.characterName}
                                         </h4>
                                         <br></br>
-                                        <h6>
+                                        
                                             <br></br>
-                                            {castMember.detail}
+                                            <h6>Phone</h6>
+                                            {castMember.phone}
                                             <br></br>
-                                            <Link className="nav-link" to={`/castMembers/${castMember.id}`}>Details</Link>
+                                            <h6>Email</h6>
+                                            {castMember.email}
+                                            <br></br>
+                                            {/* <Link className="nav-link" to={`/castMembers/${castMember.id}`}>Details</Link> */}
                                             <button
                                                 onClick={() => this.props.deleteCastMember(castMember.id)}
                                                 className="card-link btn btn-primary btn-sm">Delete Cast Member</button>
@@ -61,7 +65,7 @@ class CastMemberList extends Component {
                                             <button
                                                 onClick={() => this.props.history.push(`/castMembers/edit/${castMember.id}`)}
                                                 className="card-link">Edit</button>
-                                        </h6>
+                                       
                                     </div>
                                     <label>
                                         <button

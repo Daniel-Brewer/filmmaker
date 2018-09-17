@@ -45,10 +45,10 @@ class ProjectList extends Component {
                                     <h4 className="card-title">
                                         {project.projectName}
                                     </h4>
-                                    <h6
-                                        className="card-img-top">
+                                    {/* <h6
+                                        className="card-img-top" className="img-responsive">
                                         <img src={projects_pic} alt="" className="icon--project" />
-                                    </h6>
+                                    </h6> */}
                                     <h6>Filming begins
                                         <br></br>
                                         {project.projectDate}
@@ -64,6 +64,11 @@ class ProjectList extends Component {
                                             className="btn btn-success"
                                             onClick={() =>
                                                 this.props.history.push("/castMembers")
+                                                // {
+                                                //     this.props.castMembers
+                                                //         .filter(cast => cast.projectId === project.id)
+                                                //         .map(cast => <castMember key={cast.id} castMember={cast} {...this.props} />)
+                                                // }
                                             }>
                                             Cast Members
                 </button>
@@ -123,9 +128,8 @@ class ProjectList extends Component {
                                             Scenes
                 </button>
                                     </div>
+                                    <br></br>
                                     <h6>
- 
-
                                         {/* <Link className="nav-link" to={`/dashboard/${project.id}`}>Project Dashboard</Link> */}
                                         <button
                                             onClick={() => this.props.deleteProject(project.id)}

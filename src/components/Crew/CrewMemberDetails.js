@@ -35,7 +35,9 @@ export default class CrewMemberDetail extends Component {
                         </h4>
                         <h6 className="card-title">{crewMember.name}</h6>
                         <br></br>
-                        <h6 className="card-title">{crewMember.details}</h6>
+                        <h6 className="card-title">{crewMember.phone}</h6>
+                        <br></br>
+                        <h6 className="card-title">{crewMember.email}</h6>
                         <br></br>
                         <button
                             onClick={() => this.props.deleteCrewMember(crewMember.id)
