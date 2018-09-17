@@ -26,8 +26,8 @@ export default class ProjectEditForm extends Component {
         let newProject = {
             projectName: this.state.projectName,
             projectId: this.props.projects.find(e => e.name === this.state.project).id,
-            // characterName: this.state.characterName,
-            details: this.state.details,
+            projecDate: this.state.projectDate,
+            projectTime: this.state.projectTime,
             project: this.state.id,
             id: this.state.id
         }
@@ -65,20 +65,19 @@ export default class ProjectEditForm extends Component {
                                 id="projectName"
                                 placeholder={this.state.projectName} />
                         </div>
-                        {/* <div className="form-group">
-                    <label htmlFor="characterName">Character Name</label>
-                    <input type="text" required="true"
-                        onChange={this.handleFieldChange}
-                        id="characterName"
-                        placeholder={this.state.characterName} />
-                </div> */}
-
                         <div className="form-group">
-                            <label htmlFor="details">Details</label>
-                            <input type="text" required={true}
+                            <label htmlFor="projectDate">Date</label>
+                            <input type="date" required={true}
                                 onChange={this.handleFieldChange}
-                                id="details"
-                                placeholder={this.state.details} />
+                                id="projectDate"
+                                placeholder={this.state.projectDate} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="projectTime">Call Time</label>
+                            <input type="time" required={true}
+                                onChange={this.handleFieldChange}
+                                id="projectTime"
+                                placeholder={this.state.projectTime} />
                         </div>
                         <button type="submit" onClick={this.constructNewProject}
                             className="btn btn-primary">Submit</button>

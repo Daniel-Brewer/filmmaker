@@ -6,10 +6,9 @@ import "./project.css"
 class ProjectList extends Component {
     state = {
         projectName: "",
-        details: "",
+        projectDate: "",
+        projectTime: "",
         user: this.props.activeUser.id,
-        // project: this.state.id,
-        // castMember:this.props.castmember.id,
         isNeeded: false
     }
 
@@ -46,9 +45,18 @@ class ProjectList extends Component {
                                     <h4 className="card-title">
                                         {project.projectName}
                                     </h4>
-                                    <h6 
-                                    className="card-img-top">
+                                    <h6
+                                        className="card-img-top">
                                         <img src={projects_pic} alt="" className="icon--project" />
+                                    </h6>
+                                    <h6>Filming begins
+                                        <br></br>
+                                        {project.projectDate}
+                                    </h6>
+                                    <br></br>
+                                    <h6>Call Time
+                                        <br></br>
+                                        {project.projectTime}
                                     </h6>
                                     <br></br>
                                     <div className="castMemberButton">
@@ -116,9 +124,7 @@ class ProjectList extends Component {
                 </button>
                                     </div>
                                     <h6>
-                                        <br></br>
-                                        {project.detail}
-                                        <br></br>
+ 
 
                                         {/* <Link className="nav-link" to={`/dashboard/${project.id}`}>Project Dashboard</Link> */}
                                         <button
@@ -170,7 +176,7 @@ export default ProjectList;
     //                                         {/* <img src={projects_pic} alt="" className="icon--project" /> */}
 
     //                                             <br></br>
-    //                                             {project.detail}
+    //                                             {project.projectDate}
     //                                             <br></br>
     //                                             <Link className="nav-link" to={`/dashboard/${project.id}`}>Project Dashboard</Link>
     //                                             <button

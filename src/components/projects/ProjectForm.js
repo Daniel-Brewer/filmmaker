@@ -6,7 +6,8 @@ export default class ProjectForm extends Component {
     // Set initial state
     state = {
         projectName: "",     
-        details: "",
+        projectDate: "",
+        projectTime: "",
         isChecked: false
     }
 
@@ -20,12 +21,13 @@ export default class ProjectForm extends Component {
 
     constructNewProject = evt => {
         evt.preventDefault()
-        if (this.state.projectName === "" || this.state.details === "") {
+        if (this.state.projectName === "" || this.state.projectDate === ""|| this.state.projectTime === "") {
             window.alert("Please input all fields!")
         } else {
             const project = {
                 projectName: this.state.projectName,
-                details: this.state.details,
+                projectDate: this.state.projectDate,
+                projectTime: this.state.projectTime,
                 user: this.props.activeUser.id,
                 project: this.state.id,
                 isChecked: false
@@ -49,21 +51,22 @@ render() {
                         id="projectName"
                         placeholder="Project name" />
                 </div>
-                {/* <div className="form-group">
-                    <label htmlFor="characterName">Character Name</label>
-                    <input type="text" required="true"
-                        onChange={this.handleFieldChange}
-                        id="characterName"
-                        placeholder="Character name" />
-                </div> */}
-               
                 <div className="form-group">
-                    <label htmlFor="details">Details</label>
-                    <input type="text" required={true}
+                    <label htmlFor="date">Date</label>
+                    <input type="date" required={true}
                         onChange={this.handleFieldChange}
-                        id="details"
-                        placeholder="Add details" />
+                        id="projectDate"
+                        placeholder="Add date" />
                 </div>
+                <div className="form-group">
+                    <label htmlFor="time">Call Time</label>
+                    
+                    <input type="time" required={true}
+                        onChange={this.handleFieldChange}
+                        id="projectTime"
+                        placeholder="Time" />
+                </div>
+               
                 <button type="submit" onClick={this.constructNewProject}
                     className="btn btn-primary">Submit</button>
 
