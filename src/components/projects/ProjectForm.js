@@ -40,7 +40,6 @@ export default class ProjectForm extends Component {
     }
     // add to and go to project list when submit button is clicked
     handleButtonClick = () => {
-        // document.location.href = 'http://localhost:3000/projects'
         this.props.history("/projects")
     }
 render() {
