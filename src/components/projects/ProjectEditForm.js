@@ -28,10 +28,11 @@ export default class ProjectEditForm extends Component {
             id: this.state.id
         }
         // passing in function from DM
-        this.props.editProject(newProject.id, newProject)
-            .then(() => {
-                this.props.history.push(`/projects/${this.props.match.params.projectId}`)
-            })
+        // this.props.editProject(newProject.id, newProject)
+        //     .then(() => {
+        //         this.props.history.push(`/projects/${this.props.match.params.projectId}`)
+        //     })
+        this.props.editProject(newProject.id, newProject).then(() => this.props.history.push("/projects"))
     }
 
 
@@ -47,8 +48,9 @@ export default class ProjectEditForm extends Component {
                             </li>
                             <li className="nav-item">
                                 <button onClick={() => {
-                                    localStorage.clear("credentials")
-                                    document.location.href = 'http://localhost:3000'
+                                    // localStorage.clear("credentials")
+                                    // document.location.href = 'http://localhost:3000'
+                                    this.props.history("/projects")
                                 }}
                                     className="logoutButton">Logout</button>
                             </li>
