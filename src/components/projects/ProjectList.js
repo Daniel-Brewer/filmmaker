@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import projects_pic from "./projects_pic.jpg"
+
 import "./project.css"
 
 class ProjectList extends Component {
@@ -9,14 +10,13 @@ class ProjectList extends Component {
         projectDate: "",
         projectTime: "",
         user: this.props.activeUser.id,
-        isNeeded: false
+        // isNeeded: false
     }
 
     render() {
-        const complete = { isNeeded: true }
 
         return (<React.Fragment>
-
+            {/* logout button clears credentials */}
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
                 <div className="logoutButton">
                     <button onClick={() => {
@@ -34,10 +34,11 @@ class ProjectList extends Component {
                             this.props.history.push("/projects/new")
 
                         }>
-                        Add your Project
+                        Add Project
                 </button>
                 </div>
                 <section className="projects">
+                    {/* find projects of activeUser, I'm doing something wrong here, not passing in ActiveUser?  */}
                     {
                         this.props.projects.map(project =>
                             <div key={project.id} className="card">
@@ -45,8 +46,9 @@ class ProjectList extends Component {
                                     <h4 className="card-title">
                                         {project.projectName}
                                     </h4>
+                                    {/* add image to card */}
                                     {/* <h6
-                                        className="card-img-top" className="img-responsive">
+                                        className="img-responsive">
                                         <img src={projects_pic} alt="" className="icon--project" />
                                     </h6> */}
                                     <h6>Filming begins
@@ -59,17 +61,12 @@ class ProjectList extends Component {
                                         {project.projectTime}
                                     </h6>
                                     <br></br>
+                                    {/* buttons to all the category paths. Do I need to add project.id in these? */}
                                     <div className="castMemberButton">
                                         <button type="button"
                                             className="btn btn-success"
                                             onClick={() =>
-                                                this.props.history.push("/castMembers")
-                                                // {
-                                                //     this.props.castMembers
-                                                //         .filter(cast => cast.projectId === project.id)
-                                                //         .map(cast => <castMember key={cast.id} castMember={cast} {...this.props} />)
-                                                // }
-                                            }>
+                                                this.props.history.push("/castMembers")}>
                                             Cast Members
                 </button>
                                     </div>
@@ -90,7 +87,6 @@ class ProjectList extends Component {
                                             className="btn btn-success"
                                             onClick={() =>
                                                 this.props.history.push("/locations")
-
                                             }>
                                             Locations
                 </button>
@@ -129,8 +125,8 @@ class ProjectList extends Component {
                 </button>
                                     </div>
                                     <br></br>
+                                    {/* delete and edit buttons interact with database */}
                                     <h6>
-                                        {/* <Link className="nav-link" to={`/dashboard/${project.id}`}>Project Dashboard</Link> */}
                                         <button
                                             onClick={() => this.props.deleteProject(project.id)}
                                             className="card-link btn btn-primary btn-sm">Delete Project</button>
@@ -141,20 +137,6 @@ class ProjectList extends Component {
                                             className="card-link">Edit</button>
                                     </h6>
                                 </div>
-                                <label>
-                                    <button
-                                        onClick={() => this.props.editProject(project.id, complete)
-                                        }
-                                        className="card-link btn btn-secondary btn-lg btn-block">Completed
-                                         </button>
-                                    <div className="castMembers--movie">
-                                        {
-                                            this.props.castMembers
-                                                .filter(cast => cast.projectId === project.id)
-                                                .map(cast => <castMember key={cast.id} castMember={cast} {...this.props} />)
-                                        }
-                                    </div>
-                                </label>
                             </div>
                         )
                     }
@@ -167,55 +149,4 @@ class ProjectList extends Component {
 }
 
 export default ProjectList;
-
- //     render() {
-    //         {
-    //             return (
-    //                 <section className="projects">
-    //                     {
-    //                         this.props.projects.map(project =>
-    //                             <div key={project.id} className="card card--project">
-    //                                 <div className="card-body">
-    //                                     <h6 className="card-title">
-    //                                         {/* <img src={projects_pic} alt="" className="icon--project" /> */}
-
-    //                                             <br></br>
-    //                                             {project.projectDate}
-    //                                             <br></br>
-    //                                             <Link className="nav-link" to={`/dashboard/${project.id}`}>Project Dashboard</Link>
-    //                                             <button
-    //                                                 onClick={() => this.props.deleteProject(project.id)}
-    //                                                 className="card-link btn btn-primary btn-sm">Delete Project</button>
-    //                                             <br></br>
-    //                                             <br></br>
-    //                                             <button
-    //                                                 onClick={() => this.props.history.push(`/projects/edit/${project.id}`)}
-    //                                                 className="card-link">Edit</button>                                      
-    //                                         {/* </div> */}
-    //                                         <label>
-    //                                             <button
-    //                                                 onClick={() => this.props.editProject(project.id)
-    //                                                 }
-    //                                                 className="card-link btn btn-secondary btn-lg btn-block">Completed
-    //                                          </button>
-    //                                         </label>
-    //                                     </h6>
-    //                                 </div>
-    //                                 <h6 className="card-subtitle mb-2 text-muted">Cast Members</h6>
-    //                                 <div className="castMembers--movie">
-    //                                     {
-    //                                         this.props.castMembers
-    //                                             .filter(cast => cast.projectId === project.id)
-    //                                             .map(cast => <castMember key={cast.id} castMember={cast} {...this.props} />)
-    //                                     }
-    //                                 </div>
-
-    //                             </div>
-
-    //                         )
-    //                     }
-    //                 </section>
-    //             )
-    //         }
-    //     }
-    // }
+// const complete = { isNeeded: true }

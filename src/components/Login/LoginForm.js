@@ -32,10 +32,11 @@ export default class Login extends Component {
             const users = user.find(user => {
                 return user.email === this.state.email && user.password === this.state.password //verifies account is in DB
             })
-
+// if user is in database go to project list page
             if (users) {
                 localStorage.setItem("credentials", JSON.stringify(users))
                 document.location.href = 'http://localhost:3000/projects'
+                // if not register
             } else {
                 alert("You need to register")
                 document.location.href = 'http://localhost:3000/register'

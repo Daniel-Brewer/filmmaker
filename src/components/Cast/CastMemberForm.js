@@ -21,23 +21,24 @@ export default class CastMemberForm extends Component {
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
-
+// make a new Cast Member if not in db already
     constructNewCastMember = evt => {
         evt.preventDefault()
         if (this.state.characterName === "" || this.state.castMemberName === "" || this.state.phone === ""|| this.state.email === "") {
             window.alert("Please input all fields!")
         } else {
+            // defining what is in the Cast Member object
             const castMember = {
                 castMemberName: this.state.castMemberName,
                 characterName: this.state.characterName,
                 phone: this.state.phone,
                 email: this.state.email,
+                projects: this.props.projects.id,
                 user: this.props.activeUser.id,
-                projectId: this.props.projects.find(p => p.projectName === this.state.projects).id,
                 isChecked: false
-            }
 
-            // Create the animal and redirect user to animal list
+            }
+            // Create the cast member and redirect user to cast member list
             this.props.addCastMember(castMember).then(() => this.props.history.push("/castMembers"))
         }
     }
