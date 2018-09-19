@@ -5,9 +5,7 @@ import projects_pic from "./projects_pic.jpg"
 import "./project.css"
 
 class ProjectList extends Component {
-    // findUserName = projects => {
-    //     return this.props.users.find(user => user.id === projects.userId).username
-    // }
+
     state = {
         projectName: "",
         projectDate: "",
@@ -41,7 +39,6 @@ class ProjectList extends Component {
                 </button>
                 </div>
                 <section className="projects">
-                    {/* find projects of activeUser, I'm doing something wrong here, not passing in ActiveUser?Need a filter  */}
                     
                     {   
                         this.props.projects.map(project =>

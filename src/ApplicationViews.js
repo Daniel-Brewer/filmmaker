@@ -71,7 +71,7 @@ export default class ApplicationViews extends Component {
 
   // adding castMember and updating state
   addCastMember = castMember => DataManager.add("castMembers", castMember)
-    .then(() => DataManager.getCastMembersInProject("castMembers"))
+    .then(() => DataManager.getCastMembersInProject("castMembers",this.state.activeUser.id))
     .then(castMembers => this.setState({
       castMembers: castMembers
     }))
@@ -91,7 +91,7 @@ export default class ApplicationViews extends Component {
     }))
 
   addCrewMember = crewMember => DataManager.add("crewMembers", crewMember)
-    .then(() => DataManager.getCrewMembersInProject("crewMembers"))
+    .then(() => DataManager.getCrewMembersInProject("crewMembers",this.state.activeUser.id))
     .then(crewMembers => this.setState({
       crewMembers: crewMembers
     }))
@@ -103,7 +103,7 @@ export default class ApplicationViews extends Component {
     }))
 
   editCrewMember = (id, crewMembers) => DataManager.edit("crewMembers", id, crewMembers)
-    .then(() => DataManager.getCrewMembersInProject("crewMembers"))
+    .then(() => DataManager.getCrewMembersInProject("crewMembers",this.state.activeUser.id))
     .then(crewMembers => this.setState({
       crewMembers: crewMembers
     }))
@@ -211,12 +211,12 @@ export default class ApplicationViews extends Component {
 
       // dataManager call functions
       .then(() => {
-        DataManager.getCastMembersInProject("castMembers")
+        DataManager.getCastMembersInProject("castMembers",JSON.parse(localStorage.getItem("credentials")).id)
           .then(allCastMembers => {
             newState.castMembers = allCastMembers
           })
           .then(() => {
-            DataManager.getCrewMembersInProject("crewMembers")
+            DataManager.getCrewMembersInProject("crewMembers",JSON.parse(localStorage.getItem("credentials")).id)
               .then(allCrewMembers => {
                 newState.crewMembers = allCrewMembers
               })
@@ -329,7 +329,7 @@ export default class ApplicationViews extends Component {
             return <Redirect to="/" />
           }
         }} />
-        < Route exact path="/crewMembers/:crewMemberId(\d+)" render={(props) => {
+        {/* < Route exact path="/crewMembers/:crewMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
             return <CrewMemberDetail {...props}
               deleteCrewMember={this.deleteCrewMember}
@@ -339,7 +339,7 @@ export default class ApplicationViews extends Component {
           } else {
             return <Redirect to="/" />
           }
-        }} />
+        }} /> */}
         < Route exact path="/crewMembers/edit/:crewMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
             return <CrewMemberEditForm  {...props}

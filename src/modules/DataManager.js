@@ -13,8 +13,8 @@ export default Object.create(null, {
 // might be able to reduce these to one "getItemsInProject"
     
     getCastMembersInProject: {
-        value: (resource) => {
-            return fetch(`${remoteURL}/${resource}`)
+        value: (resource,id) => {
+            return fetch(`${remoteURL}/${resource}/?project=${id}`)
             .then(result => result.json())
         }
 
