@@ -1,7 +1,6 @@
 import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from 'react';
 import DataManager from './modules/DataManager'
-import Dashboard from './components/dashboard/Dashboard'
 import Login from './components/login/LoginForm'
 import Register from './components/login/RegisterForm'
 import CastMemberDetail from './components/cast/CastMemberDetails'
@@ -51,17 +50,13 @@ export default class ApplicationViews extends Component {
     currentproject: [],
     isLoaded: false
   }
-
+// functions to be used when called
   addUser = users => DataManager.add("users", users)
     .then(() => DataManager.getAll("users"))
     .then(users => this.setState({
       users: users
     }))
 
-  // getAllUsers = user => DataManager.getAll("users", user)
-  //   .then(users => this.setState({
-  //     users: users
-  //   }))
 
   deleteUser = id => DataManager.delete("user", id)
     .then(() => DataManager.getAll("user"))
@@ -75,24 +70,21 @@ export default class ApplicationViews extends Component {
       user: user
     }))
 
-  // addCastMemberToProject = castMember => DataManager.add("castMembers", castMember)
-  //   .then(() => DataManager.getCastMembersInProject("castMembers"))
-  //   .then(castMembers => this.setState({
-  //     currentProject: castMembers
-  //   }))
-
+  // adding castMember and updating state
   addCastMember = castMember => DataManager.add("castMembers", castMember)
     .then(() => DataManager.getCastMembersInProject("castMembers"))
     .then(castMembers => this.setState({
       castMembers: castMembers
     }))
 
+  // deleting castMember and updating state
   deleteCastMember = id => DataManager.delete("castMembers", id)
     .then(() => DataManager.getCastMembersInProject("castMembers"))
     .then(castMembers => this.setState({
       castMembers: castMembers
     }))
 
+  // editing castMember and updating state
   editCastMember = (id, castMembers) => DataManager.edit("castMembers", id, castMembers)
     .then(() => DataManager.getCastMembersInProject("castMembers"))
     .then(castMembers => this.setState({
@@ -208,29 +200,24 @@ export default class ApplicationViews extends Component {
     }))
 
   componentDidMount() {
-
+// can I set currentProject at the same time I set activeUser?
     const newState = {}
     let localUser = JSON.parse(localStorage.getItem("credentials"));
     newState.activeUser = localUser;
     DataManager.getAll("users")
       .then(allUsers => {
-        newState.users = allUsers})
-          // .then(allProjects => {
-          //   let currentProject = this.state.projects;
-          //   newState.activeProject = currentProject;
-          //   DataManager.getAll("projects")
-          //     .then(allProjects => {
-          //       newState.projects = allProjects
-          //     })
-        
-     
-      //   const newState = {}
-      //   let currentProject = this.state.project;  
-      //   newState.activeProject = currentProject;
-      // DataManager.getAll("projects")
-      //   .then(allProjects => {
-      //     newState.projects = allProjects
-      //   })
+        newState.users = allUsers
+      })
+// this is wrong
+// currentProject is empty. Why?
+    let currentProject = this.state.projects;
+    newState.projects = currentProject;
+    DataManager.getUserProjects("projects")
+      .then(userProjects => {
+        newState.projects = userProjects
+        console.log("currentProject", currentProject)
+      })
+      // database call functions
       .then(() => {
         DataManager.getCastMembersInProject("castMembers")
           .then(allCastMembers => {
@@ -263,6 +250,7 @@ export default class ApplicationViews extends Component {
                               })
                               .then(() => {
                                 DataManager.getUserProjects("projects")
+                                  // DataManager.getUserProjects(`${activeUser}`)
                                   .then(allProjects => {
                                     newState.projects = allProjects
                                   })
@@ -281,7 +269,7 @@ export default class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* put project page in place of homepage and create path to homepage from */}
+       {/* default to login */}
         <Route exact path="/" component={Login} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" render={(props) => {
@@ -289,7 +277,8 @@ export default class ApplicationViews extends Component {
             addUser={this.addUser}
             users={this.state.users} />
         }} />
-        <Route path="/dashboard" component={Dashboard} />
+        
+        {/* Route paths defined */}
         <Route exact path="/castMembers" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberList {...props}
@@ -297,7 +286,7 @@ export default class ApplicationViews extends Component {
               editCastMember={this.editCastMember}
               castMembers={this.state.castMembers}
               activeUser={this.state.activeUser}
-            // projects={this.state.projects}
+              projects={this.state.projects}
             />
           } else {
             return <Redirect to="/" />
@@ -308,7 +297,6 @@ export default class ApplicationViews extends Component {
             return <CastMemberForm {...props}
               addCastMember={this.addCastMember}
               activeUser={this.state.activeUser}
-              // currentProject={this.state.currentProject}
               projects={this.state.projects}
             />
           } else {
@@ -320,6 +308,7 @@ export default class ApplicationViews extends Component {
             return <CastMemberDetail {...props} deleteCastMember={this.deleteCastMember}
               castMembers={this.state.castMembers}
               activeUser={this.state.activeUser}
+              projects={this.state.projects}
             />
           } else {
             return <Redirect to="/" />
@@ -601,3 +590,7 @@ export default class ApplicationViews extends Component {
 
   }
 }
+// getAllUsers = user => DataManager.getAll("users", user)
+//   .then(users => this.setState({
+//     users: users
+//   }))

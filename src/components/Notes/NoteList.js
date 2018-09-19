@@ -9,7 +9,7 @@ class NoteList extends Component {
 
     render() {
 
-        const credentials = JSON.parse(localStorage.getItem('credentials'))
+        // const credentials = JSON.parse(localStorage.getItem('credentials'))
 
 
 

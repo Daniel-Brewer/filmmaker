@@ -25,13 +25,12 @@ constructNewCastMember = (evt) => {
     console.log(this.state)
     let newCastMember = {
         castMemberName: this.state.castMemberName,
-        castMemberId: this.props.castMembers.find(e => e.name === this.state.castMember).id,
         characterName: this.state.characterName,
         phone: this.state.phone,
         email: this.state.email,
-        // project: this.props.projects.find(e => e.projectId === this.state.project).id,
-
         id: this.state.id
+        // project: this.props.projects.find(e => e.projectId === this.state.project).id,
+        // castMemberId: this.props.castMembers.find(c => c.castMemberName === this.state.castMemberName).id,
     }
     this.props.editCastMember(newCastMember.id, newCastMember)
     .then(()=>{

@@ -6,7 +6,9 @@ class CastMemberList extends Component {
     state = {
         castMemberName: "",
         characterName: "",
-        details: "",
+        phone: "",
+        email: "",
+        projects:this.props.project,
         isNeeded: false
     }
 

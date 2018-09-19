@@ -8,6 +8,7 @@ export default class ProjectForm extends Component {
         projectName: "",     
         projectDate: "",
         projectTime: "",
+        user: this.props.activeUser.id,
         isChecked: false
     }
 
@@ -18,7 +19,8 @@ export default class ProjectForm extends Component {
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
-
+ 
+// make new project if not in db already
     constructNewProject = evt => {
         evt.preventDefault()
         if (this.state.projectName === "" || this.state.projectDate === ""|| this.state.projectTime === "") {
@@ -29,14 +31,14 @@ export default class ProjectForm extends Component {
                 projectDate: this.state.projectDate,
                 projectTime: this.state.projectTime,
                 user: this.props.activeUser.id,
-                project: this.state.id,
                 isChecked: false
             }
 
-            // Create the animal and redirect user to animal list
+            // Create the project from DM function and redirect user to projects list
             this.props.addProject(project).then(() => this.props.history.push("/projects"))
         }
     }
+    // add to and go to project list when submit button is clicked
     handleButtonClick = () => {
         document.location.href = 'http://localhost:3000/projects'
     }

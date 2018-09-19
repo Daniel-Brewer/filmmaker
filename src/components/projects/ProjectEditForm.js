@@ -1,8 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
-// the edit button will live on Cast Member Detail
-
 export default class ProjectEditForm extends Component {
 
     state = {
@@ -16,7 +14,6 @@ export default class ProjectEditForm extends Component {
     }
 
     componentDidMount() {
-        // console.log(this.state)
         const project = this.props.projects.find(a => a.id === parseInt(this.props.match.params.projectId, 0))
         this.setState(project);
     }
@@ -25,12 +22,12 @@ export default class ProjectEditForm extends Component {
         console.log(this.state)
         let newProject = {
             projectName: this.state.projectName,
-            projectId: this.props.projects.find(e => e.name === this.state.project).id,
             projecDate: this.state.projectDate,
             projectTime: this.state.projectTime,
-            project: this.state.id,
+            user: this.props.activeUser.id,
             id: this.state.id
         }
+        // passing in function from DM
         this.props.editProject(newProject.id, newProject)
             .then(() => {
                 this.props.history.push(`/projects/${this.props.match.params.projectId}`)
