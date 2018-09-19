@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import DataManager from './modules/DataManager'
 import Login from './components/login/LoginForm'
 import Register from './components/login/RegisterForm'
-import CastMemberDetail from './components/cast/CastMemberDetails'
 import CastMemberEditForm from './components/cast/CastMemberEditForm'
 import CastMemberForm from './components/cast/CastMemberForm'
 import CastMemberList from './components/cast/CastMemberList'
@@ -128,7 +127,7 @@ export default class ApplicationViews extends Component {
     }))
 
   addProject = project => DataManager.add("projects", project)
-    .then(() => DataManager.getUserProjects("projects"))
+    .then(() => DataManager.getUserProjects("projects",this.state.activeUser.id))
     .then(projects => this.setState({
       projects: projects
     }))
@@ -201,6 +200,7 @@ export default class ApplicationViews extends Component {
 
   componentDidMount() {
 // can I set currentProject at the same time I set activeUser?
+// isAuthenticated = () => localStorage.getItem("credentials") !== null
     const newState = {}
     let localUser = JSON.parse(localStorage.getItem("credentials"));
     newState.activeUser = localUser;
@@ -208,16 +208,8 @@ export default class ApplicationViews extends Component {
       .then(allUsers => {
         newState.users = allUsers
       })
-// this is wrong
-// currentProject is empty. Why?
-    let currentProject = this.state.projects;
-    newState.projects = currentProject;
-    DataManager.getUserProjects("projects")
-      .then(userProjects => {
-        newState.projects = userProjects
-        console.log("currentProject", currentProject)
-      })
-      // database call functions
+
+      // dataManager call functions
       .then(() => {
         DataManager.getCastMembersInProject("castMembers")
           .then(allCastMembers => {
@@ -249,8 +241,8 @@ export default class ApplicationViews extends Component {
                                 newState.locations = allLocations
                               })
                               .then(() => {
-                                DataManager.getUserProjects("projects")
-                                  // DataManager.getUserProjects(`${activeUser}`)
+                                // DataManager.getAll("projects")
+                                DataManager.getUserProjects("projects",JSON.parse(localStorage.getItem("credentials")).id)
                                   .then(allProjects => {
                                     newState.projects = allProjects
                                   })
@@ -303,17 +295,7 @@ export default class ApplicationViews extends Component {
             return <Redirect to="/" />
           }
         }} />
-        <Route exact path="/castMembers/:castMemberId(\d+)" render={(props) => {
-          if (this.isAuthenticated()) {
-            return <CastMemberDetail {...props} deleteCastMember={this.deleteCastMember}
-              castMembers={this.state.castMembers}
-              activeUser={this.state.activeUser}
-              projects={this.state.projects}
-            />
-          } else {
-            return <Redirect to="/" />
-          }
-        }} />
+
         <Route exact path="/castMembers/edit/:castMemberId(\d+)" render={(props) => {
           if (this.isAuthenticated()) {
             return <CastMemberEditForm  {...props}
@@ -590,7 +572,3 @@ export default class ApplicationViews extends Component {
 
   }
 }
-// getAllUsers = user => DataManager.getAll("users", user)
-//   .then(users => this.setState({
-//     users: users
-//   }))
