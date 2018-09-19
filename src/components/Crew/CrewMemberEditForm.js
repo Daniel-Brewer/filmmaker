@@ -27,12 +27,13 @@ export default class CrewMemberEditForm extends Component {
             crewMemberName: this.state.crewMemberName,
             crewMemberId: this.props.crewMembers.find(e => e.name === this.state.crewMember).id,
             job: this.state.job,
-            details: this.state.details,
+            // details: this.state.details,
             id: this.state.id
         }
         this.props.editCrewMember(newCrewMember.id, newCrewMember)
             .then(() => {
-                this.props.history.push(`/crewMembers/${this.props.match.params.crewMemberId}`)
+                // this.props.history.push(`/crewMembers/${this.props.match.params.crewMemberId}`)
+                this.props.history.push(`/crewMembers/`)
             })
     }
 

@@ -31,7 +31,7 @@ class CrewMemberList extends Component {
                             this.props.history.push("/crewMembers/new")
 
                         }>
-                        Click to add your Crew Member
+                        Add Crew Member
                 </button>
                 </div>
                 <div className="checkbox">
@@ -48,33 +48,31 @@ class CrewMemberList extends Component {
                                             {crewMember.job}
                                         </h5>
                                         <br></br>
-                                        
-                                        <h6>Phone</h6>
-                                            {crewMember.phone}
-                                            <br></br>
-                                            <h6>Email</h6>
-                                            {crewMember.email}
-                                            <br></br>
 
-                                            {/* <Link className="nav-link" to={`/crewMembers/${crewMember.id}`}>Details</Link> */}
-                                            <button
-                                                onClick={() => this.props.deleteCrewMember(crewMember.id)}
-                                                className="card-link btn btn-primary btn-sm">Delete Crew Member</button>
-<br></br>
-<br></br>
-                                            <button
-                                                onClick={() => this.props.history.push(`/crewMembers/edit/${crewMember.id}`)}
-                                                className="card-link">Edit</button>
-                                       
+                                        <h6>Phone</h6>
+                                        {crewMember.phone}
+                                        <br></br>
+                                        <h6>Email</h6>
+                                        {crewMember.email}
+                                        <br></br>
+
+                                        {/* <Link className="nav-link" to={`/crewMembers/${crewMember.id}`}>Details</Link> */}
+                                        <button
+                                            onClick={() => this.props.deleteCrewMember(crewMember.id)}
+                                            className="card-link btn btn-primary btn-sm">Delete Crew Member</button>
+                                        <br></br>
+                                        <br></br>
+                                        <button
+                                            onClick={() => this.props.history.push(`/crewMembers/edit/${crewMember.id}`)}
+                                            className="card-link">Edit</button>
+
                                     </div>
                                     <label>
-                                        <button
+                                        {/* <button
                                             onClick={() => this.props.editCrewMember(crewMember.id, complete)
                                             }
                                             className="card-link btn btn-secondary btn-lg btn-block">Needed
-                                         </button>
-
-                                        {/* {id} */}
+                                         </button> */}
                                     </label>
                                 </div>
                             )
