@@ -13,7 +13,7 @@ class CastMemberList extends Component {
     }
 
     render() {
-        const complete = { isNeeded: true }
+
 
         return (<React.Fragment>
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
@@ -70,14 +70,8 @@ class CastMemberList extends Component {
                                        
                                     </div>
                                     <label>
-                                        <button
-                                            onClick={() => this.props.editCastMember(castMember.id, complete)
-                                            }
-                                            className="card-link btn btn-secondary btn-lg btn-block">Needed
-                                         </button>
 
-                                        {/* {id} */}
-                                    </label>
+                                    </label> */}
                                 </div>
                             )
                         }

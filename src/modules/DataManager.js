@@ -10,16 +10,7 @@ export default Object.create(null, {
             .then(result => result.json())
         }
     },
-
-    //looky here. get All Ascend and call later for ascending order
-
-    // getAllAscend: {
-    //     value: (resource) => {
-    //         return fetch(`${remoteURL}/${resource}`)
-    //         .then(result => result.json())
-    //     }
-
-    // },
+// might be able to reduce these to one "getItemsInProject"
     
     getCastMembersInProject: {
         value: (resource) => {
@@ -44,8 +35,8 @@ export default Object.create(null, {
     },
     // need to add in an ID here
     getUserProjects: {
-        value: (resource) => {
-            return fetch(`${remoteURL}/${resource}`)
+        value: (resource,id) => {
+            return fetch(`${remoteURL}/${resource}/?user=${id}`)
             .then(result => result.json())
         }
 

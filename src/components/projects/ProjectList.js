@@ -5,27 +5,30 @@ import projects_pic from "./projects_pic.jpg"
 import "./project.css"
 
 class ProjectList extends Component {
+    // findUserName = projects => {
+    //     return this.props.users.find(user => user.id === projects.userId).username
+    // }
     state = {
         projectName: "",
         projectDate: "",
         projectTime: "",
         user: this.props.activeUser.id,
-        // isNeeded: false
     }
 
     render() {
+
 
         return (<React.Fragment>
             {/* logout button clears credentials */}
             <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
                 <div className="logoutButton">
                     <button onClick={() => {
-                        localStorage.clear("credentials")
                         document.location.href = 'http://localhost:3000'
                     }}
                         className="logoutButton">Logout</button>
                 </div>
             </nav>
+            {/* when add button is clicked page re-renders with project form  */}
             <form className="projectListForm">
                 <div className="projectButton">
                     <button type="button"
@@ -38,8 +41,9 @@ class ProjectList extends Component {
                 </button>
                 </div>
                 <section className="projects">
-                    {/* find projects of activeUser, I'm doing something wrong here, not passing in ActiveUser?  */}
-                    {
+                    {/* find projects of activeUser, I'm doing something wrong here, not passing in ActiveUser?Need a filter  */}
+                    
+                    {   
                         this.props.projects.map(project =>
                             <div key={project.id} className="card">
                                 <div className="card-body">

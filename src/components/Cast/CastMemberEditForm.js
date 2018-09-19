@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
-// the edit button will live on Cast Member Detail
 
 export default class CastMemberEditForm extends Component {
 
@@ -16,8 +15,7 @@ handleFieldChange = evt => {
 }
 
 componentDidMount() {
-    // console.log(this.state)
-    const castMember = this.props.castMembers.find(a => a.id === parseInt(this.props.match.params.castMemberId, 0))
+    const castMember = this.props.castMembers.find(c => c.id === parseInt(this.props.match.params.castMemberId, 0))
     this.setState(castMember);
 }
 constructNewCastMember = (evt) => {
@@ -34,7 +32,7 @@ constructNewCastMember = (evt) => {
     }
     this.props.editCastMember(newCastMember.id, newCastMember)
     .then(()=>{
-        this.props.history.push(`/castMembers/${this.props.match.params.castMemberId}`)
+        this.props.history.push(`/castMembers/`)
     })
 }
 
