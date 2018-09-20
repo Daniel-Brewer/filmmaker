@@ -14,21 +14,21 @@ export default Object.create(null, {
     
     getCastMembersInProject: {
         value: (resource,id) => {
-            return fetch(`${remoteURL}/${resource}/?project=${id}`)
+            return fetch(`${remoteURL}/${resource}/?user=${id}`)
             .then(result => result.json())
         }
 
     },
     getCrewMembersInProject: {
-        value: (resource) => {
-            return fetch(`${remoteURL}/${resource}`)
+        value: (resource,id) => {
+            return fetch(`${remoteURL}/${resource}/?user=${id}`)
             .then(result => result.json())
         }
 
     },
     getNotesInProject: {
-        value: (resource) => {
-            return fetch(`${remoteURL}/${resource}`)
+        value: (resource,id) => {
+            return fetch(`${remoteURL}/${resource}?user=${id}`)
             .then(result => result.json())
         }
 
@@ -42,22 +42,22 @@ export default Object.create(null, {
 
     },
     getScenesInProject: {
-        value: (resource) => {
-            return fetch(`${remoteURL}/${resource}`)
+        value: (resource,id) => {
+            return fetch(`${remoteURL}/${resource}?user=${id}`)
             .then(result => result.json())
         }
 
     },
     getScenePropsInProject: {
-        value: (resource) => {
-            return fetch(`${remoteURL}/${resource}`)
+        value: (resource,id) => {
+            return fetch(`${remoteURL}/${resource}?user=${id}`)
             .then(result => result.json())
         }
 
     },
     getLocationsInProject: {
-        value: (resource) => {
-            return fetch(`${remoteURL}/${resource}`)
+        value: (resource,id) => {
+            return fetch(`${remoteURL}/${resource}?user=${id}`)
             .then(result => result.json())
         }
 

@@ -199,7 +199,7 @@ export default class ApplicationViews extends Component {
     }))
 
   componentDidMount() {
-// can I set currentProject at the same time I set activeUser?
+
 // isAuthenticated = () => localStorage.getItem("credentials") !== null
     const newState = {}
     let localUser = JSON.parse(localStorage.getItem("credentials"));
@@ -221,27 +221,26 @@ export default class ApplicationViews extends Component {
                 newState.crewMembers = allCrewMembers
               })
               .then(() => {
-                DataManager.getNotesInProject("notes")
+                DataManager.getNotesInProject("notes",JSON.parse(localStorage.getItem("credentials")).id)
                   .then(allNotes => {
                     newState.notes = allNotes
                   })
                   .then(() => {
-                    DataManager.getScenesInProject("scenes")
+                    DataManager.getScenesInProject("scenes",JSON.parse(localStorage.getItem("credentials")).id)
                       .then(allScenes => {
                         newState.scenes = allScenes
                       })
                       .then(() => {
-                        DataManager.getScenePropsInProject("sceneProps")
+                        DataManager.getScenePropsInProject("sceneProps",JSON.parse(localStorage.getItem("credentials")).id)
                           .then(allSceneProps => {
                             newState.sceneProps = allSceneProps
                           })
                           .then(() => {
-                            DataManager.getLocationsInProject("locations")
+                            DataManager.getLocationsInProject("locations",JSON.parse(localStorage.getItem("credentials")).id)
                               .then(allLocations => {
                                 newState.locations = allLocations
                               })
                               .then(() => {
-                                // DataManager.getAll("projects")
                                 DataManager.getUserProjects("projects",JSON.parse(localStorage.getItem("credentials")).id)
                                   .then(allProjects => {
                                     newState.projects = allProjects
